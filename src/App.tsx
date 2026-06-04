@@ -4,6 +4,7 @@ import MapaPage from '@/pages/MapaPage'
 import DetalhePage from '@/pages/DetalhePage'
 import DashboardPage from '@/pages/DashboardPage'
 import ImpactoPage from '@/pages/ImpactoPage'
+import CarbonoPage from '@/pages/CarbonoPage'
 
 /**
  * App — Roteamento principal
@@ -13,6 +14,7 @@ import ImpactoPage from '@/pages/ImpactoPage'
  * /mapa/:regiao → Tela 3: Detalhe da Comunidade
  * /dashboard → Tela 6: Dashboard Operacional
  * /impacto → Tela 7: Impacto Social
+ * /carbono → Tela 8: Carbono Solidário
  * * → /cadastro (fallback)
  */
 export default function App() {
@@ -24,6 +26,7 @@ export default function App() {
       <Route path="/mapa/:regiao" element={<DetalhePage />} />
       <Route path="/dashboard" element={<DashboardPage />} />
       <Route path="/impacto" element={<ImpactoPage />} />
+      <Route path="/carbono" element={<CarbonoPage />} />
       <Route path="*" element={<Navigate to="/cadastro" replace />} />
     </Routes>
   )
