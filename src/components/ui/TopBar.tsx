@@ -27,7 +27,7 @@ export default function TopBar({
 }: TopBarProps) {
   return (
     <header
-      className="flex items-center justify-between px-10 py-4 flex-shrink-0"
+      className="flex items-center justify-between px-10 py-4 flex-shrink-0 sticky top-0 z-10"
       style={{
         backgroundColor: '#FFFFFF',
         borderBottom: '1px solid #E5E0D5',
@@ -78,6 +78,7 @@ export default function TopBar({
                 borderColor: '#E5E7EB',
                 color: '#1B2A22',
               }}
+              aria-label="Buscar alertas"
             />
           </div>
         )}
@@ -119,7 +120,6 @@ export default function TopBar({
               style={{ backgroundColor: '#C1440E', border: '1.5px solid #FFFFFF' }}
             />
           </button>
-          
           <button
             className="p-2 rounded-full hover:bg-gray-100 transition-colors"
             style={{ color: '#1B2A22' }}
@@ -127,7 +127,6 @@ export default function TopBar({
           >
             <Settings size={18} strokeWidth={1.8} />
           </button>
-          
           <button
             className="p-2 rounded-full hover:bg-gray-100 transition-colors"
             style={{ color: '#1B2A22' }}

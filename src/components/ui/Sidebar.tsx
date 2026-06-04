@@ -60,11 +60,11 @@ export default function Sidebar({
             style={({ isActive }) =>
               isActive
                 ? {
-                  backgroundColor: '#2D6A4F',
-                  color: '#FFFFFF',
-                  borderColor: '#52B788',
-                  paddingLeft: '12px', // Ajusta o padding devido à borda esquerda de 4px
-                }
+                    backgroundColor: '#2D6A4F',
+                    color: '#FFFFFF',
+                    borderColor: '#52B788',
+                    paddingLeft: '12px',
+                  }
                 : {}
             }
           >
@@ -101,9 +101,7 @@ export default function Sidebar({
         style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}
       >
         <HelpCircle size={13} strokeWidth={1.5} style={{ color: '#95D5B2' }} />
-        <span className="text-xs font-sans" style={{ color: '#95D5B2' }}>
-          Suporte · v1.0.0
-        </span>
+        <span className="text-xs font-sans" style={{ color: '#95D5B2' }}>Suporte · v1.0.0</span>
       </div>
     </aside>
   )

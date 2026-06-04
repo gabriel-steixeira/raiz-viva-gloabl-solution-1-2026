@@ -1,6 +1,10 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import CadastroPage from '@/pages/CadastroPage'
 import MapaPage from '@/pages/MapaPage'
+import DetalhePage from '@/pages/DetalhePage'
+import DashboardPage from '@/pages/DashboardPage'
+import ImpactoPage from '@/pages/ImpactoPage'
+import CarbonoPage from '@/pages/CarbonoPage'
 import DetalheRegiaoPage from '@/pages/DetalheRegiaoPage'
 import RecomendacoesPage from '@/pages/RecomendacoesPage'
 import AlertasPage from '@/pages/AlertasPage'
@@ -10,6 +14,10 @@ import AlertasPage from '@/pages/AlertasPage'
  * / → /cadastro (tela inicial no deploy)
  * /cadastro → Tela 1: Cadastro
  * /mapa → Tela 2: Mapa de Risco
+ * /mapa/:regiao → Tela 3: Detalhe da Comunidade
+ * /dashboard → Tela 6: Dashboard Operacional
+ * /impacto → Tela 7: Impacto Social
+ * /carbono → Tela 8: Carbono Solidário
  * /mapa/:regiaoId → Tela 3: Detalhe da Região
  * /mapa/:regiaoId/recomendacoes → Tela 4: Recomendações Inteligentes
  * * → /cadastro (fallback)
@@ -23,6 +31,9 @@ export default function App() {
       <Route path="/mapa/:regiaoId" element={<DetalheRegiaoPage />} />
       <Route path="/mapa/:regiaoId/recomendacoes" element={<RecomendacoesPage />} />
       <Route path="/alertas" element={<AlertasPage />} />
+      <Route path="/dashboard" element={<DashboardPage />} />
+      <Route path="/impacto" element={<ImpactoPage />} />
+      <Route path="/carbono" element={<CarbonoPage />} />
       <Route path="*" element={<Navigate to="/cadastro" replace />} />
     </Routes>
   )
