@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 /* Raiz Viva — Global Styles */
 :root {
   --verde-solo: #2D6A4F;
