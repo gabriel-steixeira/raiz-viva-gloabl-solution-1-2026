@@ -1,16 +1,29 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Raiz Viva — Global Styles */
+:root {
+  --verde-solo: #2D6A4F;
+  --verde-folha: #40916C;
+  --verde-claro: #74C69D;
+  --amarelo-sol: #F4A261;
+  --vermelho-alerta: #E63946;
+  --branco-nuvem: #F8F9FA;
+  --cinza-terra: #6B705C;
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
 
-@layer base {
-  * {
-    box-sizing: border-box;
-  }
-  body {
-    font-family: 'Inter', sans-serif;
-    background-color: #F4ECD8;
-    color: #1B2A22;
-    margin: 0;
-    padding: 0;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--branco-nuvem);
+  color: var(--cinza-terra);
+}
+
+.leaflet-container {
+  height: 500px;
+  width: 100%;
+  border-radius: 12px;
 }
