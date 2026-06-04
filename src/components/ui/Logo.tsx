@@ -20,7 +20,7 @@ export default function Logo({
 }: LogoProps) {
   return (
     <img
-      src="/logo.jpg"
+      src="../../public/logo.jpg"
       alt="Raiz Viva"
       height={height}
       style={{
