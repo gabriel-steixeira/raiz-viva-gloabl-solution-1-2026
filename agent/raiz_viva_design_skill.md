@@ -128,6 +128,45 @@ Item ativo: background #2D6A4F, border-left 3px solid #52B788
 
 ---
 
+## Componentes React Implementados
+
+> Todos os componentes estão em `src/components/`. Importar via `@/components/ui` (componentes globais) ou pelo caminho relativo.
+
+### 📦 Componentes Globais — `src/components/ui/`
+
+| Componente | Arquivo | Descrição | Telas que usa |
+|---|---|---|---|
+| `<Button>` | `Button.tsx` | Botão primário/secundário/ghost com loading | Todas |
+| `<Input>` | `Input.tsx` | Input com label, error, placeholder | T1, T5 |
+| `<Select>` | `Select.tsx` | Select dropdown com label e error | T1, T2, T5 |
+| `<RadioGroup>` | `RadioGroup.tsx` | Grupo de radio buttons acessível | T1 |
+| `<Card>` | `Card.tsx` | Card base com sombra e padding | Todas |
+| `<Badge>` | `Badge.tsx` | Badge genérico de status/label | Todas |
+| `<Logo>` | `Logo.tsx` | Logo Raiz Viva (light/dark) | T1, T2–T8 |
+| `<IssBadge>` | `IssBadge.tsx` | Badge ISS com cores de risco automáticas | T2, T3, T6 |
+| `<Sidebar>` | `Sidebar.tsx` | Navegação lateral das telas autenticadas | T2–T8 |
+| `<TopBar>` | `TopBar.tsx` | Barra superior com título, badge e ações | T2–T8 |
+| `<AppLayout>` | `AppLayout.tsx` | Layout base: Sidebar + Content (wrapper) | T2–T8 |
+| `<FilterBar>` | `FilterBar.tsx` | Barra de filtros horizontais (selects) | T2, T5, T6 |
+| `<Breadcrumb>` | `Breadcrumb.tsx` | Trilha de navegação com links | T3, T4 |
+
+### 🗺️ Componentes do Mapa — `src/components/mapa/`
+
+| Componente | Arquivo | Descrição |
+|---|---|---|
+| `<BrazilMap>` | `BrazilMap.tsx` | SVG do Brasil com estados clicáveis, coloridos por ISS |
+| `<MapLegend>` | `MapLegend.tsx` | Legenda de cores ISS (canto do mapa) |
+| `<RegionSidePanel>` | `RegionSidePanel.tsx` | Painel lateral com preview da região selecionada |
+
+### 📋 Componentes de Cadastro — `src/components/cadastro/`
+
+| Componente | Arquivo | Descrição |
+|---|---|---|
+| `<CadastroForm>` | `CadastroForm.tsx` | Formulário completo de cadastro com validação |
+| `<BenefitItem>` | `BenefitItem.tsx` | Item de benefício com ícone, título e descrição |
+
+---
+
 ## skill_wireframes
 **Descrição:** Descreve a estrutura completa de cada tela da plataforma Raiz Viva com layout, componentes e conteúdo esperado.
 
@@ -147,8 +186,9 @@ Item ativo: background #2D6A4F, border-left 3px solid #52B788
 
 ---
 
-### Tela 1 — Cadastro
+### Tela 1 — Cadastro ✅ IMPLEMENTADA
 > Rota: `/cadastro` | Pública | Sem sidebar
+> Página: `src/pages/CadastroPage.tsx`
 
 ```
 HEADER (altura 72px):
@@ -158,60 +198,59 @@ HERO (2 colunas):
   COLUNA ESQUERDA (fundo #2D6A4F, padding 64px):
     H1: "Proteja sua lavoura com alertas de satélite"
     Body: "Receba avisos gratuitos de seca, calor e risco do solo direto no seu celular."
-    [Ícones de benefício: 🛰️ Dados NASA  🌱 100% gratuito  📱 SMS/WhatsApp/Voz]
+    [BenefitItem] 🛰️ Dados NASA
+    [BenefitItem] 🌱 100% gratuito
+    [BenefitItem] 📱 SMS/WhatsApp/Voz
+    [Blockquote] Dona Maria — depoimento
 
-  COLUNA DIREITA (fundo #FAFAF7, padding 48px):
+  COLUNA DIREITA (fundo #F4ECD8, padding 48px):
     H2: "Criar conta gratuita"
-    [Radio Group] Tipo: ● Agricultor Familiar  ○ Cooperativa/Organização
-    [Input] Nome completo
-    [Input] Município
-    [Select] Estado (UF)
-    [Select] Cultura principal
-    [Radio Group] Canal preferido: ● WhatsApp  ○ SMS  ○ Voz
-    [Input] Telefone (com máscara)
-    [Button Primário] "Cadastrar e receber alertas grátis"
-    [Caption] "🔒 Seus dados são protegidos. Alertas são gratuitos e sem condições."
+    [CadastroForm]:
+      [RadioGroup] Tipo: Agricultor | Cooperativa
+      [Input] Nome completo
+      [Input] Município
+      [Select] Estado (UF) + [Select] Cultura principal
+      [RadioGroup] Canal preferido
+      [Input] Telefone
+      [Button Primário] "Cadastrar e receber alertas grátis"
+      [Caption] Disclaimer de privacidade
 ```
+
+**Componentes usados:** `Logo`, `BenefitItem`, `CadastroForm`, `Button`, `Input`, `Select`, `RadioGroup`
 
 ---
 
-### Tela 2 — Mapa Nacional de Risco
+### Tela 2 — Mapa Nacional de Risco ✅ IMPLEMENTADA
 > Rota: `/mapa` | Autenticada | Com sidebar
+> Página: `src/pages/MapaPage.tsx`
 
 ```
+[AppLayout] = Sidebar (280px) + Content:
+
 SIDEBAR:
   [Logo] Raiz Viva
-  [Avatar] Nome do usuário | Perfil
-  [Nav]:
-    📍 Mapa (ativo)
-    🔔 Alertas
-    📊 Dashboard
-    🌿 Impacto Social
-    🌳 Carbono Solidário
-  [Footer sidebar] Versão | Suporte
+  [Avatar] Nome | Perfil
+  [Nav]: 📍 Mapa (ativo) | 🔔 Alertas | 📊 Dashboard | 🌿 Impacto | 🌳 Carbono
+  [Footer] Versão | Suporte
 
 CONTENT:
-  TOP BAR (altura 56px):
-    Título: "Mapa Nacional de Risco"
-    [Badge] "Última atualização: há 3h"
-    [Button Secundário] "Exportar Relatório"
+  [TopBar] "Mapa Nacional de Risco" | Badge atualização | [Button] Exportar
+  [FilterBar] Bioma | Estado | Cultura | Período
 
-  FILTROS (altura 48px, horizontal):
-    [Select] Bioma  [Select] Estado  [Select] Cultura  [DatePicker] Período
-
-  MAPA (fill restante):
-    Mapa do Brasil — regiões coloridas por ISS
-    [🟢 Verde] ISS 70–100 Baixo  [🟡 Amarelo] ISS 40–69 Moderado  [🔴 Vermelho] ISS 0–39 Alto
-    Hover em região: Tooltip com [Nome, ISS atual, Nível, Tendência ↑↓]
-    Click em região: navega para Tela 3
-
-  LEGENDA (canto inferior esquerdo):
-    Escala de cores ISS + valores
-
-  PAINEL LATERAL DIREITO (320px, ao clicar numa região):
-    Preview: Nome da Região | ISS badge | Indicadores resumidos
-    [Button] "Ver detalhes completos →"
+  CORPO (flex row):
+    [BrazilMap] (fill):
+      Estados coloridos por ISS
+      Click em estado → abre RegionSidePanel
+      [MapLegend] canto inferior esquerdo
+    [RegionSidePanel] (320px, condicional):
+      Nome + Estado
+      [IssBadge]
+      Cards: Tendência | Famílias
+      Última atualização
+      [Button] "Ver detalhes completos →" → /mapa/:id
 ```
+
+**Componentes usados:** `AppLayout`, `Sidebar`, `TopBar`, `FilterBar`, `BrazilMap`, `MapLegend`, `RegionSidePanel`, `IssBadge`
 
 ---
 
@@ -219,37 +258,26 @@ CONTENT:
 > Rota: `/mapa/:regiao` | Autenticada | Com sidebar
 
 ```
-SIDEBAR: (igual Tela 2)
-
+[AppLayout]
 CONTENT:
-  BREADCRUMB: Mapa › Quixadá, CE
+  [Breadcrumb] Mapa › Quixadá, CE
 
   HERO CARD (fundo terracota suave, 100% largura):
-    [Badge ISS] "34 — Risco ALTO 🔴" (grande, destaque)
-    Subtítulo: "Quixadá, CE — Sertão Central"
-    [Badge confiança] "🛰️ Alta confiança · Atualizado há 6h"
-    [Button Primário] "Ver Recomendações"  [Button Secundário] "Enviar Alerta"
+    [IssBadge] grande | Subtítulo: região | Badge confiança
+    [Button] "Ver Recomendações"  [Button] "Enviar Alerta"
 
-  ROW DE INDICADORES (4 cards iguais):
-    [Card 1] 💧 Umidade do Solo
-      Valor: "42% abaixo do normal" | Indicador: Du | Fonte: NASA SMAP
-      Barra de progresso visual
-    [Card 2] 🌿 Saúde da Vegetação
-      Valor: "NDVI −0,18 ↓" | Indicador: Dn | Fonte: MODIS/Sentinel-2
-    [Card 3] 🌧️ Déficit de Chuva
-      Valor: "−38mm acumulado" | Indicador: Dc | Fonte: NASA GPM
-    [Card 4] 🌡️ Temperatura de Superfície
-      Valor: "+3,2°C acima da média" | Indicador: Dt | Fonte: MODIS LST
+  ROW DE INDICADORES (4 cards):
+    [Card] 💧 Umidade do Solo (SMAP)
+    [Card] 🌿 Saúde da Vegetação (NDVI)
+    [Card] 🌧️ Déficit de Chuva (GPM)
+    [Card] 🌡️ Temperatura de Superfície (MODIS LST)
 
   SEÇÃO GRÁFICO + MAPA (2 colunas):
-    ESQUERDA (60%):
-      Título: "Histórico do ISS — últimos 90 dias"
-      [Gráfico linha com área] — eixo X: datas, eixo Y: 0–100
-      Linha de referência: 70 (baixo) e 40 (moderado)
-    DIREITA (40%):
-      Título: "Mapa Regional"
-      [Mini mapa] zoom na região com municípios vizinhos coloridos
+    Gráfico linha ISS — últimos 90 dias
+    Mini mapa regional com municípios vizinhos
 ```
+
+**Componentes a criar:** `IndicatorCard`, mini mapa, `IssLineChart`
 
 ---
 
@@ -257,36 +285,21 @@ CONTENT:
 > Rota: `/mapa/:regiao/recomendacoes` | Autenticada | Com sidebar
 
 ```
-SIDEBAR: (igual Tela 2)
-
+[AppLayout]
 CONTENT:
-  HEADER:
-    Breadcrumb: Mapa › Quixadá, CE › Recomendações
-    H1: "Recomendações — Risco ALTO"
-    [Badge ISS] "ISS 34"
+  [Breadcrumb] Mapa › Quixadá, CE › Recomendações
+  H1 + [IssBadge]
 
-  FILTRO TABS:
-    [Tab ativo] ⚡ Imediatas  |  [Tab] 📅 Esta semana  |  [Tab] 📆 Próximos 30 dias
+  [Tab] ⚡ Imediatas | 📅 Esta semana | 📆 30 dias
 
-  LISTA DE RECOMENDAÇÕES (cards verticais, largura total):
-
-    [Card — URGENTE, borda terracota]:
-      Ícone 🌾 | Tag "URGENTE" | Título: "Antecipar colheita do feijão em estágio final"
-      Descrição: "Com ISS crítico e previsão de piora, colheitas em fase final correm risco."
-      [Button] "Marcar como feito" ✓
-
-    [Card — URGENTE]:
-      Ícone 💧 | "Irrigar apenas nas horas frescas (antes 8h / após 17h)"
-
-    [Card — IMPORTANTE, borda amarela]:
-      Ícone 🌿 | Tag "IMPORTANTE" | "Cobrir solo com mulching para reter umidade"
-
-    [Card — RECOMENDADO]:
-      Ícone 🤝 | Tag "RECOMENDADO" | "Acionar cooperativa para apoio logístico"
-
-    [Card — PREVENTIVO]:
-      Ícone 🏞️ | Tag "PREVENTIVO" | "Verificar e proteger nível das cisternas"
+  LISTA:
+    [RecommendationCard — URGENTE] borda terracota
+    [RecommendationCard — IMPORTANTE] borda amarela
+    [RecommendationCard — RECOMENDADO]
+    [RecommendationCard — PREVENTIVO]
 ```
+
+**Componentes a criar:** `TabGroup`, `RecommendationCard`
 
 ---
 
@@ -294,78 +307,34 @@ CONTENT:
 > Rota: `/alertas` | Autenticada | Com sidebar
 
 ```
-SIDEBAR: (igual Tela 2, item "Alertas" ativo)
-
+[AppLayout — Alertas ativo]
 CONTENT:
-  TOP BAR:
-    H1: "Central de Alertas"
-    [Button Primário] "+ Enviar Alerta Manual"
-
-  FILTROS (barra horizontal):
-    [Select] Tipo: Seca | Chuva excessiva | Temperatura
-    [Select] Período: Hoje | 7d | 30d | Personalizado
-    [Select] Região / Estado
-    [Select] Status: Enviado | Agendado | Rascunho
+  [TopBar] "Central de Alertas" | [Button] "+ Enviar Alerta Manual"
+  [FilterBar] Tipo | Período | Região | Status
 
   LAYOUT 2 COLUNAS:
-    COLUNA ESQUERDA — Lista de alertas (timeline):
-      [Item 1 — CRÍTICO 🔴]:
-        Ícone | "Seca Crítica — Quixadá, CE"
-        "há 2 horas · 340 famílias notificadas · WhatsApp + SMS"
-        [Badge] Enviado ✓
-
-      [Item 2 — MODERADO 🟡]:
-        "Veranico — Sertão Central, CE"
-        "há 1 dia · 1.200 famílias · WhatsApp"
-
-      [Item 3 — NORMALIZAÇÃO 🟢]:
-        "Normalização detectada — Cariri, CE"
-        "há 3 dias · Informativo"
-
-    COLUNA DIREITA — Preview do alerta selecionado (card):
-      Título do alerta | Nível de risco
-      [Box] Mensagem enviada (como aparece no WhatsApp)
-      Estatísticas:
-        👨‍👩‍👧 Famílias atingidas: 340
-        📱 Canais: WhatsApp (280) + SMS (60)
-        ✅ Confirmações recebidas: 212 (62%)
-      [Button] "Reenviar"  [Button] "Ver relatório"
+    Timeline de alertas (cards com status, ícone, famílias, canais)
+    Preview do alerta selecionado (mensagem WhatsApp, estatísticas)
 ```
+
+**Componentes a criar:** `AlertCard`, `AlertPreview`, `AlertTimeline`
 
 ---
 
 ### Tela 6 — Dashboard Operacional
-> Rota: `/dashboard` | Autenticada (gestor/admin) | Com sidebar
+> Rota: `/dashboard` | Autenticada | Com sidebar
 
 ```
-SIDEBAR: (igual Tela 2, item "Dashboard" ativo)
-
+[AppLayout — Dashboard ativo]
 CONTENT:
-  TOP BAR:
-    H1: "Dashboard Operacional"
-    [DatePicker] Período  [Button] "Exportar PDF"
+  [TopBar] "Dashboard Operacional" | DatePicker | Exportar PDF
 
-  ROW 1 — KPIs (4 cards, grid 4 colunas):
-    [Card] 👨‍👩‍👧 Famílias Monitoradas: 12.450 | ↑8% vs. mês anterior
-    [Card] 🔔 Alertas Enviados: 847 | Últimos 30 dias
-    [Card] 🌾 Hectares Cobertos: 284.000 | ↑12%
-    [Card] 📊 ISS Médio Nacional: 61 | 🟡 Moderado
-
-  ROW 2 — Gráficos (2 colunas):
-    ESQUERDA (60%):
-      Título: "ISS Médio por Bioma — Últimos 6 meses"
-      [Gráfico de linhas múltiplas] Caatinga | Cerrado | Amazônia | Mata Atlântica
-
-    DIREITA (40%):
-      Título: "Distribuição de Risco Atual"
-      [Gráfico donut/pizza]
-        🟢 Baixo: 38% | 🟡 Moderado: 45% | 🔴 Alto/Crítico: 17%
-
-  ROW 3 — Tabela:
-    Título: "Regiões em Estado Crítico"
-    Colunas: Região | Estado | ISS | Famílias em Risco | Tendência | Último Alerta | Ação
-    [3–5 linhas de dados] | [Button por linha] "Ver detalhes"
+  ROW KPIs (4 cards): Famílias | Alertas | Hectares | ISS Médio
+  ROW Gráficos: ISS por Bioma (linhas) | Distribuição de Risco (donut)
+  Tabela: Regiões Críticas
 ```
+
+**Componentes a criar:** `KpiCard`, `IssMultiLineChart`, `RiskDonutChart`, `CriticalRegionsTable`
 
 ---
 
@@ -373,36 +342,15 @@ CONTENT:
 > Rota: `/impacto` | Autenticada | Com sidebar
 
 ```
-SIDEBAR: (igual Tela 2, item "Impacto Social" ativo)
-
+[AppLayout — Impacto ativo]
 CONTENT:
-  HERO SECTION (fundo #2D6A4F, padding 48px, texto branco):
-    H1: "Raiz Viva em Números"
-    Subtítulo: "Impacto real para quem vive da terra"
-    ROW DE CONTADORES (3 cards brancos semitransparentes):
-      [👨‍👩‍👧] 12.450 Famílias protegidas
-      [🌾] 284.000 ha Hectares monitorados
-      [⏱️] 48h Antecedência média dos alertas
-
-  SEÇÃO CASO DE USO (2 colunas, fundo bege-terra):
-    ESQUERDA:
-      [Foto placeholder — agricultora]
-    DIREITA:
-      Tag: "📖 História real"
-      H2: "Dona Maria, Quixadá, CE"
-      Citação: "Quando recebi o aviso, ainda tinha tempo de salvar o feijão..."
-      Body: Narrativa do impacto concreto — ISS alertou com 48h de antecedência,
-            colheita antecipada evitou perda total de 2,4 ha.
-      [Badge] "Perda evitada estimada: R$ 4.200"
-
-  SEÇÃO GRÁFICO:
-    Título: "Perdas Agrícolas Evitadas vs. Estimadas sem Raiz Viva"
-    [Gráfico de barras agrupadas] — últimos 6 meses
-
-  MAPA DE IMPACTO:
-    Título: "Municípios Atendidos"
-    [Mapa do Brasil] com pins de impacto (tamanho proporcional a famílias atendidas)
+  HERO verde com contadores animados
+  Caso de uso Dona Maria (foto + citação + badge de perda evitada)
+  Gráfico barras: perdas evitadas vs estimadas
+  Mapa com pins de impacto por município
 ```
+
+**Componentes a criar:** `ImpactCounter`, `TestimonialCard`, `ImpactBarChart`
 
 ---
 
@@ -410,47 +358,15 @@ CONTENT:
 > Rota: `/carbono` | Autenticada | Com sidebar
 
 ```
-SIDEBAR: (igual Tela 2, item "Carbono Solidário" ativo)
-
+[AppLayout — Carbono ativo]
 CONTENT:
-  HERO (fundo terracota-suave #F4A261, padding 48px):
-    H1: "Carbono Solidário"
-    Subtítulo: "Renda extra pela sua terra preservada"
-    [Chip] "100% opcional"  [Chip] "Não condiciona alertas"
-    Body: "O mesmo satélite que monitora o risco também identifica
-           áreas com potencial de crédito de carbono."
-
-  SEÇÃO ELEGIBILIDADE (3 cards horizontais, fundo branco):
-    [Card 1] 🌳 Vegetação Preservada
-      "Áreas de mata nativa intacta ou em regeneração"
-    [Card 2] 🔄 Recuperação de Área
-      "Áreas em processo de reflorestamento ativo"
-    [Card 3] 🌿 Sistemas Agroflorestais
-      "Integração lavoura-árvore com práticas sustentáveis"
-    [CTA Card] "Minha área é elegível?"
-      [Button Primário] "Verificar elegibilidade agora"
-
-  SEÇÃO MODELO (fundo bege-terra):
-    H2: "Como funciona o modelo coletivo"
-    [Infográfico horizontal — 4 etapas]:
-      1. 🛰️ Satélite identifica áreas elegíveis
-      2. 🤝 Cooperativa agrega áreas pequenas
-      3. ✅ Verificação MRV simplificada
-      4. 💰 Receita distribuída por área (R$ 120–350/ha/ano*)
-    [Caption] "*Estimativa baseada em mercado voluntário de carbono. Valores podem variar."
-
-  SEÇÃO MAPA + CTA:
-    ESQUERDA (60%):
-      Título: "Áreas Elegíveis Identificadas"
-      [Mapa regional] áreas verdes destacadas = elegíveis
-    DIREITA (40%):
-      Card de destaque:
-        "Potencial da sua cooperativa"
-        Área elegível estimada: -- ha (aguardando dados)
-        Receita potencial: -- R$/ano
-        [Button Primário] "Quero participar via cooperativa"
-        [Link] "Saiba mais sobre MRV e verificação independente"
+  HERO terracota-suave + chips
+  3 cards de elegibilidade
+  Infográfico 4 etapas do modelo coletivo
+  Mapa de áreas elegíveis + CTA card
 ```
+
+**Componentes a criar:** `EligibilityCard`, `ProcessStep`, `CarbonPotentialCard`
 
 ---
 
@@ -461,7 +377,8 @@ CONTENT:
   └─ "Cadastrar e receber alertas grátis" ──────────→ [T2 Mapa Nacional]
 
 [T2 Mapa Nacional]
-  └─ Click em região do mapa ───────────────────────→ [T3 Detalhe Comunidade]
+  └─ Click em estado do mapa ───────────────────────→ [RegionSidePanel]
+  └─ "Ver detalhes completos" no SidePanel ──────────→ [T3 Detalhe Comunidade]
   └─ Sidebar: Alertas ──────────────────────────────→ [T5 Alertas]
   └─ Sidebar: Dashboard ────────────────────────────→ [T6 Dashboard]
   └─ Sidebar: Impacto Social ───────────────────────→ [T7 Impacto Social]
@@ -478,40 +395,51 @@ CONTENT:
   └─ Sidebar: Mapa ─────────────────────────────────→ [T2 Mapa Nacional]
 
 [T6 Dashboard]
-  └─ Click em linha da tabela "Ver detalhes" ───────→ [T3 Detalhe Comunidade]
-  └─ Sidebar: Mapa ─────────────────────────────────→ [T2 Mapa Nacional]
+  └─ Click em linha "Ver detalhes" ─────────────────→ [T3 Detalhe Comunidade]
 
-[T7 Impacto Social]
-  └─ Sidebar: Mapa ─────────────────────────────────→ [T2 Mapa Nacional]
-
-[T8 Carbono Solidário]
-  └─ "Verificar elegibilidade agora" ───────────────→ [T3 Detalhe Comunidade]
-  └─ Sidebar: Mapa ─────────────────────────────────→ [T2 Mapa Nacional]
+[T7, T8] └─ Sidebar: Mapa ────────────────────────→ [T2 Mapa Nacional]
 ```
 
 ---
 
-## Estrutura do Projeto Figma
+## Estrutura do Projeto React
 
 ```
-📁 Raiz Viva — Design System & Wireframes
-├── 🎨 Página 1: Capa
-│     Frame 1440×900 | Fundo #2D6A4F
-│     Logo central + tagline + chips de contexto
-├── 🔧 Página 2: Design System
-│     Paleta de cores (swatches)
-│     Tipografia (escala)
-│     Componentes (botões, badges, cards, inputs, sidebar)
-├── 📐 Página 3: Wireframes
-│     T1 — Cadastro
-│     T2 — Mapa Nacional de Risco
-│     T3 — Detalhe da Comunidade
-│     T4 — Recomendações Inteligentes
-│     T5 — Alertas
-│     T6 — Dashboard Operacional
-│     T7 — Impacto Social
-│     T8 — Carbono Solidário
-└── 🔗 Página 4: Protótipo
-      Fluxo completo com conexões entre telas
-      Anotações de interação
+src/
+├── components/
+│   ├── ui/                  ← Componentes globais reutilizáveis
+│   │   ├── Button.tsx
+│   │   ├── Input.tsx
+│   │   ├── Select.tsx
+│   │   ├── RadioGroup.tsx
+│   │   ├── Card.tsx
+│   │   ├── Badge.tsx
+│   │   ├── Logo.tsx
+│   │   ├── IssBadge.tsx     ← Badge ISS com escala de cores
+│   │   ├── Sidebar.tsx      ← Nav lateral autenticada
+│   │   ├── TopBar.tsx       ← Barra superior autenticada
+│   │   ├── AppLayout.tsx    ← Wrapper Sidebar + Content
+│   │   ├── FilterBar.tsx    ← Filtros horizontais
+│   │   ├── Breadcrumb.tsx   ← Trilha de navegação
+│   │   └── index.ts
+│   ├── mapa/                ← Componentes exclusivos Tela 2
+│   │   ├── BrazilMap.tsx
+│   │   ├── MapLegend.tsx
+│   │   ├── RegionSidePanel.tsx
+│   │   └── index.ts
+│   └── cadastro/            ← Componentes exclusivos Tela 1
+│       ├── CadastroForm.tsx
+│       └── BenefitItem.tsx
+├── pages/
+│   ├── CadastroPage.tsx     ← T1 ✅
+│   └── MapaPage.tsx         ← T2 ✅
+├── data/
+│   ├── estados.ts
+│   ├── culturas.ts
+│   └── regioes.ts           ← Mock dados das regiões
+└── tokens/
+    ├── colors.ts
+    ├── spacing.ts
+    ├── typography.ts
+    └── index.ts
 ```
