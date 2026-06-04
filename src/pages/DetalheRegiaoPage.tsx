@@ -377,7 +377,7 @@ export default function DetalheRegiaoPage() {
     <AppLayout userName="Agronomist User" userProfile="Profile & Settings">
       <TopBar showSearch={false} />
 
-      <div className="flex-1 overflow-y-auto p-6 md:p-10 flex flex-col gap-6" style={{ backgroundColor: '#FAFAF7' }}>
+      <div className="flex-1 overflow-y-auto p-6 md:p-10 flex flex-col gap-6" style={{ backgroundColor: '#ECFEF1' }}>
         {/* Breadcrumb */}
         <Breadcrumb
           items={[
@@ -414,7 +414,7 @@ export default function DetalheRegiaoPage() {
 
           <div className="flex items-center gap-3 mt-6 md:mt-0 w-full md:w-auto">
             <button
-              onClick={() => navigate(`/mapa`)} // Pode direcionar para recomendações no futuro
+              onClick={() => navigate(`/mapa/${regiaoId}/recomendacoes`)}
               className="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all hover:opacity-90 active:scale-[0.98]"
               style={{ backgroundColor: '#2D6A4F', color: '#FAFAF7' }}
             >
