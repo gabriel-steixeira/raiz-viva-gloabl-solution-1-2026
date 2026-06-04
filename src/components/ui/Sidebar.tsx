@@ -8,7 +8,7 @@ import {
   TreePine,
   HelpCircle,
 } from 'lucide-react'
-import { Logo } from '@/components/ui/Logo'
+import Logo from '@/components/ui/Logo'
 
 export interface SidebarProps {
   userName?: string
@@ -16,17 +16,13 @@ export interface SidebarProps {
 }
 
 const navItems = [
-  { to: '/mapa',    icon: MapPin,   label: 'Mapa' },
-  { to: '/alertas', icon: Bell,     label: 'Alertas' },
+  { to: '/mapa',      icon: MapPin,    label: 'Mapa' },
+  { to: '/alertas',   icon: Bell,      label: 'Alertas' },
   { to: '/dashboard', icon: BarChart2, label: 'Dashboard' },
-  { to: '/impacto', icon: Users,    label: 'Impacto Social' },
-  { to: '/carbono', icon: TreePine, label: 'Carbono Solidário' },
+  { to: '/impacto',   icon: Users,     label: 'Impacto Social' },
+  { to: '/carbono',   icon: TreePine,  label: 'Carbono Solidário' },
 ]
 
-/**
- * Sidebar — Navegação lateral autenticada
- * Reutilizável em: Tela 2 (Mapa), Tela 3, Tela 4, Tela 5, Tela 6, Tela 7, Tela 8
- */
 export default function Sidebar({ userName = 'Usuário', userProfile = 'Agricultor' }: SidebarProps) {
   return (
     <aside
@@ -52,7 +48,7 @@ export default function Sidebar({ userName = 'Usuário', userProfile = 'Agricult
         </div>
       </div>
 
-      {/* Nav items */}
+      {/* Nav */}
       <nav className="flex-1 px-3 py-4 flex flex-col gap-1">
         {navItems.map(({ to, icon: Icon, label }) => (
           <NavLink
