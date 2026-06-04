@@ -7,6 +7,7 @@ import MapaPage from '@/pages/MapaPage'
  * / → /cadastro (tela inicial no deploy)
  * /cadastro → Tela 1: Cadastro
  * /mapa → Tela 2: Mapa de Risco
+ * * → /cadastro (fallback)
  */
 export default function App() {
   return (
@@ -14,7 +15,6 @@ export default function App() {
       <Route path="/" element={<Navigate to="/cadastro" replace />} />
       <Route path="/cadastro" element={<CadastroPage />} />
       <Route path="/mapa" element={<MapaPage />} />
-      {/* Fallback: qualquer rota desconhecida vai para cadastro */}
       <Route path="*" element={<Navigate to="/cadastro" replace />} />
     </Routes>
   )
