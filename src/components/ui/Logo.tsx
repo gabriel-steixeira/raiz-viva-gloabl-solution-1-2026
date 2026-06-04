@@ -11,9 +11,10 @@ export default function Logo({
   height = 48,
   className = '',
 }: LogoProps) {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, '')
   return (
     <img
-      src="/images/logo.png"
+      src={`${base}/images/logo.png`}
       alt="Raiz Viva"
       height={height}
       style={{

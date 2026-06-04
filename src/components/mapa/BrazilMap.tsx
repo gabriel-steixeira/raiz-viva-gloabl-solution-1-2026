@@ -8,13 +8,6 @@ export interface BrazilMapProps {
   onRegionClick: (region: RegionData) => void
 }
 
-/**
- * BrazilMap — Mapa do Brasil com imagem de fundo + regiões clicáveis em SVG
- * A imagem do Brasil (Map_of_Brazil.jpg) é usada como fundo posicionado
- * para dar contexto geográfico real aos estados.
- * Os estados SVG são sobrepostos em coordenadas aproximadas que coincidem
- * com a imagem (viewBox calibrado para a imagem 480x520).
- */
 const statePositions: Record<string, { cx: number; cy: number; rx: number; ry: number }> = {
   'AC':  { cx: 108, cy: 295, rx: 28, ry: 18 },
   'AM':  { cx: 178, cy: 228, rx: 62, ry: 52 },
@@ -47,16 +40,17 @@ const statePositions: Record<string, { cx: number; cy: number; rx: number; ry: n
 
 export default function BrazilMap({ regions, selectedRegionId, onRegionClick }: BrazilMapProps) {
   const regionById = Object.fromEntries(regions.map((r) => [r.id, r]))
+  const base = import.meta.env.BASE_URL.replace(/\/$/, '')
 
   return (
     <div
       className="relative w-full h-full flex items-center justify-center"
       style={{ backgroundColor: '#D6EDE5' }}
     >
-      {/* Imagem do Brasil como fundo — blendMode multiply para integrar com as elipses */}
+      {/* Imagem do Brasil como fundo */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <img
-          src="/images/map-brazil.jpg"
+          src={`${base}/images/map-brazil.jpg`}
           alt=""
           aria-hidden="true"
           className="h-full w-auto max-w-none object-contain"
