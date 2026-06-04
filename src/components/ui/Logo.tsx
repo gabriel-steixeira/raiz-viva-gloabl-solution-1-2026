@@ -1,12 +1,5 @@
 import React from 'react'
 
-/**
- * Raiz Viva — Componente: Logo
- *
- * Exibe o logotipo da plataforma.
- * variant 'light' usa versão sobre fundo escuro (filtro branco).
- * variant 'dark'  usa versão padrão.
- */
 export interface LogoProps {
   variant?: 'light' | 'dark'
   height?: number
@@ -20,7 +13,7 @@ export default function Logo({
 }: LogoProps) {
   return (
     <img
-      src="../../public/logo.jpg"
+      src="/images/logo.png"
       alt="Raiz Viva"
       height={height}
       style={{
