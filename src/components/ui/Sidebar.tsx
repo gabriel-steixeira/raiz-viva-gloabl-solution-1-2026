@@ -17,10 +17,10 @@ export interface SidebarProps {
 
 const navItems = [
   { to: '/dashboard', icon: BarChart2, label: 'Dashboard' },
-  { to: '/mapa',      icon: MapPin,    label: 'Mapa Nacional de Risco' },
-  { to: '/alertas',   icon: Bell,      label: 'Central de Alertas' },
-  { to: '/impacto',   icon: Users,     label: 'Impacto Social' },
-  { to: '/carbono',   icon: TreePine,  label: 'Carbono Solidário' },
+  { to: '/mapa', icon: MapPin, label: 'Mapa Nacional de Risco' },
+  { to: '/alertas', icon: Bell, label: 'Central de Alertas' },
+  { to: '/impacto', icon: Users, label: 'Impacto Social' },
+  { to: '/carbono', icon: TreePine, label: 'Carbono Solidário' },
 ]
 
 /**
@@ -52,10 +52,9 @@ export default function Sidebar({
             key={to}
             to={to}
             className={({ isActive }) =>
-              `flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ${
-                isActive
-                  ? 'border-l-[4px]'
-                  : 'text-white/60 hover:text-white hover:bg-white/5'
+              `flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ${isActive
+                ? 'border-l-[4px]'
+                : 'text-white/60 hover:text-white hover:bg-white/5'
               }`
             }
             style={({ isActive }) =>
@@ -87,8 +86,12 @@ export default function Sidebar({
           {userName.charAt(0).toUpperCase()}
         </div>
         <div className="flex flex-col min-w-0">
-          <span className="text-sm font-semibold text-white truncate font-sans">{userName}</span>
-          <span className="text-xs font-sans" style={{ color: '#95D5B2' }}>{userProfile}</span>
+          <span className="text-sm font-semibold text-white truncate font-sans">
+            {userName}
+          </span>
+          <span className="text-xs font-sans" style={{ color: '#95D5B2' }}>
+            {userProfile}
+          </span>
         </div>
       </div>
 

@@ -1,5 +1,6 @@
 import React from 'react'
-import type { IssRiskLevel } from '@/tokens'
+
+export type IssRiskLevel = 'baixo' | 'moderado' | 'alto' | 'critico'
 
 /**
  * Raiz Viva — Componente: Badge
