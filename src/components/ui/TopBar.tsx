@@ -27,7 +27,7 @@ export default function TopBar({
 }: TopBarProps) {
   return (
     <header
-      className="flex items-center justify-between px-10 py-4 flex-shrink-0"
+      className="flex items-center justify-between px-10 py-4 flex-shrink-0 sticky top-0 z-10"
       style={{
         backgroundColor: '#FFFFFF',
         borderBottom: '1px solid #E5E0D5',

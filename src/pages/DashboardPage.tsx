@@ -25,7 +25,7 @@ export default function DashboardPage() {
       <TopBar showSearch />
 
       {/* Dashboard Content */}
-      <div className="flex flex-col gap-6 px-6 md:px-10 lg:px-20 py-6 pb-16 overflow-y-auto flex-1">
+      <div className="flex flex-col gap-6 px-6 md:px-10 lg:px-20 py-6 pb-16 flex-1">
         {/* Page Header + Filters */}
         <div className="flex flex-col gap-4">
           {/* Title row */}
