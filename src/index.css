@@ -1,33 +1,181 @@
+/* ── Google Fonts Import — DEVE vir antes dos @tailwind ────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Raiz Viva — Global Styles */
+/* ═══════════════════════════════════════════════════════════════
+   Raiz Viva — Design System Global Styles
+   Fonte: Inter (Google Fonts)
+   ═══════════════════════════════════════════════════════════════ */
+
+
+/* ── CSS Custom Properties (Design Tokens) ─────────────────────
+   Todas as cores usam estas variáveis. Componentes que precisam
+   de valores via JS devem importar src/tokens/colors.ts.
+   ─────────────────────────────────────────────────────────────── */
 :root {
-  --verde-solo: #2D6A4F;
-  --verde-folha: #40916C;
-  --verde-claro: #74C69D;
-  --amarelo-sol: #F4A261;
-  --vermelho-alerta: #E63946;
-  --branco-nuvem: #F8F9FA;
-  --cinza-terra: #6B705C;
-  --font-sans: 'Inter', system-ui, sans-serif;
+  /* ── Paleta de Verde (Primárias) ──── */
+  --verde-raiz:      #2D6A4F;   /* Cor primária: CTAs, sidebar ativa  */
+  --verde-claro:     #52B788;   /* Hover, ISS baixo                   */
+  --verde-menta:     #95D5B2;   /* Fills suaves, ícones sobre escuro  */
+  --verde-profundo:  #0F5238;   /* Heroes escuros, CTAs fortes        */
+  --verde-carbon:    #1B2A22;   /* Sidebar bg, textos principais      */
+
+  /* ── Background / Superfície ──────── */
+  --bege-terra:      #F4ECD8;   /* Background geral e hover secundário */
+  --branco-campo:    #FAFAF7;   /* Cards, superfícies elevadas         */
+
+  /* ── Alerta / Risco ───────────────── */
+  --terracota:       #C1440E;   /* Alertas críticos, botão danger      */
+  --terracota-suave: #F4A261;   /* Warnings, ISS alto/moderado         */
+  --terracota-escuro:#832800;   /* Textos de erro fortes               */
+
+  /* ── Atenção ──────────────────────── */
+  --amarelo-seco:    #E9C46A;   /* ISS moderado (40–69), atenção       */
+
+  /* ── Texto ────────────────────────── */
+  --text-primary:    #1B2A22;   /* Textos principais                   */
+  --text-secondary:  #6B7280;   /* Textos secundários, placeholders    */
+  --text-forte:      #101F17;   /* Títulos sobre fundo branco          */
+  --text-medio:      #404943;   /* Textos médios                       */
+  --text-sutil:      #707973;   /* Ajuda, muito sutil                  */
+
+  /* Aliases históricos (mantidos para retrocompatibilidade) */
+  --carbon:          #1B2A22;
+  --cinza-solo:      #6B7280;
+
+  /* ── Bordas ───────────────────────── */
+  --borda-suave:     #E5E0D5;   /* Bordas de cards e inputs            */
+  --borda-verde:     rgba(191, 201, 193, 0.3);
+
+  /* ── Superfícies de seção ─────────── */
+  --surface-verde-suave:  #F0FAF4;   /* Fundos de cards internos         */
+  --surface-verde-claro:  #ECFEF1;   /* Fundos de pages (content area)   */
+  --surface-verde-pale:   #D5E7DA;   /* Layout raiz AppLayout bg         */
+  --surface-bege-verde:   #EAF3EE;   /* Cadastro/splash                  */
+  --surface-branco:       #FFFFFF;   /* Branco puro                      */
+
+  /* ── ISS Risk Scale ───────────────── */
+  --iss-baixo-bg:    #D8F3DC;
+  --iss-baixo-text:  #2D6A4F;
+  --iss-medio-bg:    #FFF3CD;
+  --iss-medio-text:  #856404;
+  --iss-alto-bg:     #FFE0D5;
+  --iss-alto-text:   #C1440E;
+  --iss-critico-bg:  #C1440E;
+  --iss-critico-text:#FAFAF7;
+
+  /* ── Sombras ──────────────────────── */
+  --shadow-card:    0 2px 12px rgba(0, 0, 0, 0.08);
+  --shadow-section: 0px 4px 20px -2px rgba(16, 31, 23, 0.04);
+  --shadow-modal:   0 8px 32px rgba(0, 0, 0, 0.16);
+
+  /* ── Tipografia ───────────────────── */
+  --font-sans:       'Inter', system-ui, -apple-system, sans-serif;
+
+  /* ── Layout ───────────────────────── */
+  --sidebar-width:   280px;
+  --topbar-height:   72px;
+  --filterbar-height:56px;
 }
 
-* {
+/* ── Reset & Base ───────────────────────────────────────────────
+   Box-sizing, margin/padding reset e body base
+   ─────────────────────────────────────────────────────────────── */
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  font-family: var(--font-sans);
-  background: var(--branco-nuvem);
-  color: var(--cinza-terra);
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
 }
 
+body {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background-color: var(--surface-verde-pale);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Tipografia Base ─────────────────────────────────────────────
+   Hierarquia de headings alinhada ao design system
+   ─────────────────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-forte);
+}
+
+h1 { font-size: 2rem; }       /* 32px */
+h2 { font-size: 1.5rem; }     /* 24px */
+h3 { font-size: 1.25rem; font-weight: 600; } /* 20px */
+
+p, span, li {
+  font-family: var(--font-sans);
+}
+
+/* ── Seleção de texto ──────────────────────────────────────────── */
+::selection {
+  background-color: var(--verde-menta);
+  color: var(--verde-carbon);
+}
+
+/* ── Focus outline global ─────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--verde-claro);
+  outline-offset: 2px;
+}
+
+/* ── Scrollbar customizada (webkit) ──────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--borda-suave);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--verde-claro);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--verde-raiz);
+}
+
+/* ── Leaflet Map ─────────────────────────────────────────────── */
 .leaflet-container {
   height: 500px;
   width: 100%;
   border-radius: 12px;
+  font-family: var(--font-sans);
 }
+
+/* ── Utilitários de Animação ────────────────────────────────── */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(16px); }
+  to   { opacity: 1; transform: translateX(0);    }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.6; }
+}
+
+.animate-fade-in       { animation: fade-in 0.3s ease-out both; }
+.animate-slide-in-right{ animation: slide-in-right 0.25s ease-out both; }
+.animate-pulse-soft    { animation: pulse-soft 2s ease-in-out infinite; }

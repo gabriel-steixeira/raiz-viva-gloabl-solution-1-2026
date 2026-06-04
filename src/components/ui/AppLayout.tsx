@@ -13,7 +13,7 @@ export interface AppLayoutProps extends SidebarProps {
  */
 export default function AppLayout({ children, userName, userProfile }: AppLayoutProps) {
   return (
-    <div className="flex min-h-screen" style={{ backgroundColor: '#D5E7DA' }}>
+    <div className="flex min-h-screen bg-surface-verde-pale">
       <Sidebar userName={userName} userProfile={userProfile} />
       <main className="flex flex-col flex-1 min-w-0 overflow-y-auto">
         {children}

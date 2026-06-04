@@ -46,16 +46,16 @@ export default function CarbonoPage() {
           aria-label="Carbono Solidário — introdução"
           className="relative overflow-hidden rounded-2xl p-8 lg:p-12"
           style={{
-            background: 'linear-gradient(135deg, #2D6A4F 0%, #1B4D35 50%, #0F5238 100%)',
+            background: 'linear-gradient(135deg, var(--verde-raiz) 0%, #1B4D35 50%, var(--verde-profundo) 100%)',
           }}
         >
-          <div className="relative flex flex-col lg:flex-row items-start justify-between gap-8">
+          <div className="relative flex flex-col lg:flex-row items-center justify-between gap-8">
             {/* Left content */}
-            <div className="flex flex-col gap-5 max-w-[480px]">
+            <div className="flex flex-col gap-5">
               {/* Badge */}
               <span
-                className="inline-flex items-center gap-1.5 w-fit px-3 py-1.5 rounded-full text-xs font-semibold"
-                style={{ backgroundColor: 'rgba(255, 255, 255, 0.15)', color: '#FFFFFF' }}
+                className="inline-flex items-center gap-1.5 w-fit px-3 py-1.5 rounded-full text-xs font-semibold text-white"
+                style={{ backgroundColor: 'var(--overlay-branco15, rgba(255,255,255,0.15))' }}
               >
                 <Leaf size={12} strokeWidth={1.5} />
                 100% Opcional
@@ -101,12 +101,12 @@ export default function CarbonoPage() {
         <section aria-label="Critérios de elegibilidade para geração de créditos de carbono">
           <div className="flex flex-col gap-1 mb-5">
             <h2
-              className="text-2xl font-bold"
-              style={{ color: '#101F17', letterSpacing: '-0.3px' }}
+              className="text-h2 font-bold text-text-forte"
+              style={{ letterSpacing: '-0.3px' }}
             >
               Critérios de Elegibilidade
             </h2>
-            <p className="text-sm" style={{ color: '#404943' }}>
+            <p className="text-body-s text-text-medio">
               Áreas elegíveis para geração de créditos de carbono.
             </p>
           </div>
@@ -129,12 +129,12 @@ export default function CarbonoPage() {
         >
           <div className="flex flex-col items-center text-center mb-10">
             <h2
-              className="text-2xl font-bold mb-2"
-              style={{ color: '#101F17', letterSpacing: '-0.3px' }}
+              className="text-h2 font-bold mb-2 text-text-forte"
+              style={{ letterSpacing: '-0.3px' }}
             >
               Como funciona o modelo
             </h2>
-            <p className="text-sm" style={{ color: '#404943' }}>
+            <p className="text-body-s text-text-medio">
               Um processo transparente e tecnológico para certificar suas práticas.
             </p>
           </div>
@@ -155,7 +155,7 @@ export default function CarbonoPage() {
           }}
         >
           {/* Left: Map / Photo */}
-          <div className="lg:col-span-7 relative min-h-[380px] overflow-hidden" style={{ backgroundColor: '#2D4A3A' }}>
+          <div className="lg:col-span-7 relative min-h-[380px] overflow-hidden bg-verde-carbon">
             <img
               src={`${import.meta.env.BASE_URL}images/carbono-area-agricola.jpg`}
               alt="Vista aérea de áreas agrícolas elegíveis para créditos de carbono"
@@ -166,7 +166,7 @@ export default function CarbonoPage() {
             <div
               className="absolute top-4 left-4 flex flex-col gap-2 px-4 py-3 rounded-xl"
               style={{
-                backgroundColor: 'rgba(27, 42, 34, 0.85)',
+                backgroundColor: 'var(--verde85, rgba(27,42,34,0.85))',
                 backdropFilter: 'blur(8px)',
               }}
             >
@@ -188,40 +188,35 @@ export default function CarbonoPage() {
           {/* Right: CTA Card */}
           <div className="lg:col-span-5 bg-white p-8 flex flex-col justify-center gap-5">
             <h3
-              className="text-2xl font-bold leading-tight"
-              style={{ color: '#101F17', letterSpacing: '-0.3px' }}
+              className="text-h2 font-bold leading-tight text-text-forte"
+              style={{ letterSpacing: '-0.3px' }}
             >
               Potencial da sua cooperativa
             </h3>
 
             <div className="flex flex-col gap-1">
-              <span className="text-xs font-medium uppercase tracking-wider" style={{ color: '#707973' }}>
+              <span className="text-xs font-medium uppercase tracking-wider text-text-sutil">
                 Área total elegível estimada
               </span>
               <div className="flex items-baseline gap-1">
-                <span className="text-4xl font-bold" style={{ color: '#101F17' }}>
+                <span className="text-display font-bold text-text-forte">
                   4.2k
                 </span>
-                <span className="text-lg font-medium" style={{ color: '#404943' }}>
+                <span className="text-lg font-medium text-text-medio">
                   ha
                 </span>
               </div>
             </div>
 
             <div
-              className="p-4 rounded-xl text-sm leading-relaxed"
-              style={{
-                backgroundColor: '#F0FAF4',
-                border: '1px solid rgba(191, 201, 193, 0.2)',
-                color: '#404943',
-              }}
+              className="p-4 rounded-xl text-body-s leading-relaxed text-text-medio bg-surface-verde-suave"
+              style={{ border: '1px solid rgba(191,201,193,0.2)' }}
             >
               Baseado nos dados preliminares de satélite, sua propriedade possui forte aptidão para o programa.
             </div>
 
             <button
-              className="flex items-center justify-center gap-2 w-full px-6 py-3.5 rounded-full text-sm font-semibold transition-opacity hover:opacity-90"
-              style={{ backgroundColor: '#0F5238', color: '#FFFFFF' }}
+              className="flex items-center justify-center gap-2 w-full px-6 py-3.5 rounded-btn text-body-s font-semibold transition-opacity hover:opacity-90 bg-verde-profundo text-white"
             >
               Quero participar
               <ArrowRight size={16} strokeWidth={1.5} />
@@ -242,25 +237,24 @@ function EligibilityCardComponent({ data }: { data: EligibilityCard }) {
     <div
       className="flex flex-col gap-4 p-6 rounded-xl bg-white transition-shadow hover:shadow-md"
       style={{
-        border: '1px solid rgba(191, 201, 193, 0.15)',
+        border: '1px solid rgba(191,201,193,0.15)',
         boxShadow: '0px 1px 3px rgba(0,0,0,0.04)',
       }}
     >
       {/* Icon */}
       <div
-        className="w-10 h-10 rounded-lg flex items-center justify-center"
-        style={{ backgroundColor: 'rgba(45, 106, 79, 0.08)' }}
+        className="w-10 h-10 rounded-lg flex items-center justify-center bg-surface-verde-suave"
       >
-        <Icon size={20} strokeWidth={1.5} style={{ color: '#2D6A4F' }} />
+        <Icon size={20} strokeWidth={1.5} className="text-verde-raiz" />
       </div>
 
       {/* Title */}
-      <h3 className="text-base font-semibold" style={{ color: '#101F17' }}>
+      <h3 className="text-body-l font-semibold text-text-forte">
         {data.title}
       </h3>
 
       {/* Description */}
-      <p className="text-sm leading-relaxed" style={{ color: '#404943' }}>
+      <p className="text-body-s leading-relaxed text-text-medio">
         {data.description}
       </p>
     </div>
@@ -274,30 +268,26 @@ function ProcessStepCard({ data }: { data: ProcessStep }) {
     <div className="flex flex-col items-center text-center gap-3">
       {/* Icon circle */}
       <div
-        className="w-14 h-14 rounded-full flex items-center justify-center"
-        style={{
-          backgroundColor: '#F0FAF4',
-          border: '1px solid rgba(191, 201, 193, 0.2)',
-        }}
+        className="w-14 h-14 rounded-full flex items-center justify-center bg-surface-verde-suave"
+        style={{ border: '1px solid rgba(191,201,193,0.2)' }}
       >
-        <Icon size={24} strokeWidth={1.5} style={{ color: '#2D6A4F' }} />
+        <Icon size={24} strokeWidth={1.5} className="text-verde-raiz" />
       </div>
 
       {/* Step badge */}
       <span
-        className="inline-flex px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider"
-        style={{ backgroundColor: '#D8F3DC', color: '#2D6A4F' }}
+        className="inline-flex px-2.5 py-0.5 rounded-full text-micro font-bold uppercase tracking-wider bg-iss-baixo text-verde-raiz"
       >
         Etapa {data.id}
       </span>
 
       {/* Title */}
-      <h4 className="text-sm font-bold" style={{ color: '#101F17' }}>
+      <h4 className="text-body-s font-bold text-text-forte">
         {data.title}
       </h4>
 
       {/* Description */}
-      <p className="text-xs leading-relaxed" style={{ color: '#707973' }}>
+      <p className="text-micro leading-relaxed text-text-sutil">
         {data.description}
       </p>
     </div>

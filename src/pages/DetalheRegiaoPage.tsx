@@ -317,13 +317,12 @@ export default function DetalheRegiaoPage() {
   if (!estadoData) {
     return (
       <AppLayout userName="Agronomist User" userProfile="Profile & Settings">
-        <div className="flex flex-col items-center justify-center flex-1 gap-4 p-10 bg-[#FAFAF7]">
-          <h2 className="text-2xl font-bold text-[#1B2A22]">Região não encontrada</h2>
-          <p className="text-[#6B7280]">O estado "{regiaoId}" não está mapeado no sistema.</p>
+        <div className="flex flex-col items-center justify-center flex-1 gap-4 p-10 bg-branco-campo">
+          <h2 className="text-h2 font-bold text-carbon">Região não encontrada</h2>
+          <p className="text-cinza-solo">O estado "{regiaoId}" não está mapeado no sistema.</p>
           <button
             onClick={() => navigate('/mapa')}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-full text-white font-semibold hover:opacity-90"
-            style={{ backgroundColor: '#2D6A4F' }}
+            className="flex items-center gap-2 px-5 py-2.5 rounded-btn text-white font-semibold hover:opacity-90 bg-verde-raiz"
           >
             <ArrowLeft size={16} /> Voltar ao Mapa
           </button>
@@ -377,7 +376,7 @@ export default function DetalheRegiaoPage() {
     <AppLayout userName="Agronomist User" userProfile="Profile & Settings">
       <TopBar showSearch={false} />
 
-      <div className="flex-1 overflow-y-auto p-6 md:p-10 flex flex-col gap-6" style={{ backgroundColor: '#ECFEF1' }}>
+      <div className="flex-1 overflow-y-auto p-6 md:p-10 flex flex-col gap-6 bg-surface-verde-claro">
         {/* Breadcrumb */}
         <Breadcrumb
           items={[
@@ -395,18 +394,18 @@ export default function DetalheRegiaoPage() {
             <div className="flex flex-wrap items-center gap-3">
               <IssBadge value={estadoData.iss} size="lg" />
               <span
-                className="px-3 py-1 rounded-full text-xs font-semibold uppercase flex items-center gap-1.5"
-                style={{ backgroundColor: 'rgba(255, 255, 255, 0.7)', color: '#1B2A22' }}
+                className="px-3 py-1 rounded-full text-xs font-semibold uppercase flex items-center gap-1.5 text-verde-carbon"
+                style={{ backgroundColor: 'rgba(255,255,255,0.7)' }}
               >
-                <Shield size={12} style={{ color: '#2D6A4F' }} />
+                <Shield size={12} className="text-verde-raiz" />
                 {labelConfianca} — Atualizado {estadoData.ultimaAtualizacao}
               </span>
             </div>
             <div>
-              <h2 className="text-3xl font-extrabold" style={{ color: '#1B2A22' }}>
+              <h2 className="text-3xl font-extrabold text-carbon">
                 {infoLocal.cidade}, {infoLocal.uf}
               </h2>
-              <p className="text-sm font-semibold mt-0.5" style={{ color: '#6B7280' }}>
+              <p className="text-body-s font-semibold mt-0.5 text-cinza-solo">
                 {infoLocal.microrregiao}
               </p>
             </div>
@@ -415,16 +414,14 @@ export default function DetalheRegiaoPage() {
           <div className="flex items-center gap-3 mt-6 md:mt-0 w-full md:w-auto">
             <button
               onClick={() => navigate(`/mapa/${regiaoId}/recomendacoes`)}
-              className="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all hover:opacity-90 active:scale-[0.98]"
-              style={{ backgroundColor: '#2D6A4F', color: '#FAFAF7' }}
+              className="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-3 rounded-btn text-body-s font-semibold transition-all hover:opacity-90 active:scale-[0.98] bg-verde-raiz text-branco-campo"
             >
               <Sparkles size={16} />
               Ver Recomendações
             </button>
             <button
               onClick={() => alert('Alerta regional enviado com sucesso aos agricultores da região!')}
-              className="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all hover:bg-gray-100/80 active:scale-[0.98] border bg-white"
-              style={{ borderColor: '#2D6A4F', color: '#2D6A4F' }}
+              className="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-3 rounded-btn text-body-s font-semibold transition-all hover:bg-gray-100/80 active:scale-[0.98] border border-verde-raiz text-verde-raiz bg-white"
             >
               <Send size={16} />
               Enviar Alerta
@@ -435,7 +432,7 @@ export default function DetalheRegiaoPage() {
         {/* Grid de Indicadores (4 Cards) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Card 1: Umidade do Solo */}
-          <div className="bg-white border rounded-2xl p-5 flex flex-col gap-4 shadow-sm" style={{ borderColor: '#E5E0D5' }}>
+          <div className="bg-white border border-borda-suave rounded-2xl p-5 flex flex-col gap-4 shadow-sm">
             <div className="flex items-center justify-between">
               <div className="p-2.5 rounded-xl bg-blue-50 text-blue-600">
                 <Droplet size={20} strokeWidth={2} />
@@ -446,11 +443,11 @@ export default function DetalheRegiaoPage() {
               </span>
             </div>
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider block" style={{ color: '#6B7280' }}>
+              <span className="text-micro font-bold uppercase tracking-wider block text-cinza-solo">
                 Umidade do Solo
               </span>
               <div className="flex items-baseline gap-2 mt-1">
-                <span className="text-3xl font-extrabold text-[#1B2A22]">{indicadores.umidade.valor}</span>
+                <span className="text-3xl font-extrabold text-carbon">{indicadores.umidade.valor}</span>
                 <span className="text-xs font-bold" style={{ color: indicadores.umidade.cor }}>
                   {indicadores.umidade.status}
                 </span>
@@ -462,13 +459,13 @@ export default function DetalheRegiaoPage() {
                 style={{ width: `${indicadores.umidade.percentual}%`, backgroundColor: indicadores.umidade.cor }}
               />
             </div>
-            <span className="text-[11px] font-medium" style={{ color: '#6B7280' }}>
+            <span className="text-micro font-medium text-cinza-solo">
               Fonte: SMAP / INMET
             </span>
           </div>
 
           {/* Card 2: Saúde da Vegetação */}
-          <div className="bg-white border rounded-2xl p-5 flex flex-col gap-4 shadow-sm" style={{ borderColor: '#E5E0D5' }}>
+          <div className="bg-white border border-borda-suave rounded-2xl p-5 flex flex-col gap-4 shadow-sm">
             <div className="flex items-center justify-between">
               <div className="p-2.5 rounded-xl bg-emerald-50 text-emerald-600">
                 <Leaf size={20} strokeWidth={2} />
@@ -479,11 +476,11 @@ export default function DetalheRegiaoPage() {
               </span>
             </div>
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider block" style={{ color: '#6B7280' }}>
+              <span className="text-micro font-bold uppercase tracking-wider block text-cinza-solo">
                 Saúde da Vegetação
               </span>
               <div className="flex items-baseline gap-2 mt-1">
-                <span className="text-3xl font-extrabold text-[#1B2A22]">{indicadores.ndvi.valor}</span>
+                <span className="text-3xl font-extrabold text-carbon">{indicadores.ndvi.valor}</span>
                 <span className="text-xs font-bold" style={{ color: indicadores.ndvi.cor }}>
                   {estadoData.iss < 40 ? 'Seca Severa' : 'Estável'}
                 </span>
@@ -495,7 +492,7 @@ export default function DetalheRegiaoPage() {
                 style={{ width: `${indicadores.ndvi.percentual}%`, backgroundColor: indicadores.ndvi.cor }}
               />
             </div>
-            <span className="text-[11px] font-medium" style={{ color: '#6B7280' }}>
+            <span className="text-micro font-medium text-cinza-solo">
               Fonte: Sentinel-2 / NDVI
             </span>
           </div>
@@ -569,12 +566,11 @@ export default function DetalheRegiaoPage() {
         {/* Seção Gráfico (Histórico) + Mapa Regional */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-4">
           {/* Histórico do ISS */}
-          <div className="bg-white border rounded-2xl p-6 flex flex-col gap-4 shadow-sm" style={{ borderColor: '#E5E0D5' }}>
+          <div className="bg-white border border-borda-suave rounded-2xl p-6 flex flex-col gap-4 shadow-sm">
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-bold text-[#1B2A22]">Histórico do ISS</h3>
+              <h3 className="text-h3 font-bold text-carbon">Histórico do ISS</h3>
               <select
-                className="text-xs font-semibold py-1.5 px-3 rounded-lg border outline-none cursor-pointer hover:bg-gray-50 transition-colors"
-                style={{ borderColor: '#E5E0D5', backgroundColor: '#FAFAF7', color: '#1B2A22' }}
+                className="text-xs font-semibold py-1.5 px-3 rounded-lg border border-borda-suave outline-none cursor-pointer hover:bg-gray-50 transition-colors bg-branco-campo text-carbon"
               >
                 <option>Últimos 90 dias</option>
                 <option>Últimos 30 dias</option>
@@ -675,11 +671,11 @@ export default function DetalheRegiaoPage() {
           </div>
 
           {/* Mapa Regional */}
-          <div className="bg-white border rounded-2xl p-6 flex flex-col gap-4 shadow-sm" style={{ borderColor: '#E5E0D5' }}>
+          <div className="bg-white border border-borda-suave rounded-2xl p-6 flex flex-col gap-4 shadow-sm">
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-bold text-[#1B2A22]">Mapa Regional</h3>
-              <span className="text-xs font-semibold text-[#6B7280] uppercase tracking-wider">
-                Microrregião de {infoLocal.cidade}
+              <h3 className="text-h3 font-bold text-carbon">Mapa Regional</h3>
+              <span className="text-micro font-semibold text-cinza-solo uppercase tracking-wider">
+                Microrregiao de {infoLocal.cidade}
               </span>
             </div>
 

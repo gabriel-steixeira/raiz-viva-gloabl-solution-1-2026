@@ -17,8 +17,7 @@ import CadastroForm from '@/components/cadastro/CadastroForm'
 export default function CadastroPage() {
   return (
     <div
-      className="min-h-screen flex flex-col font-sans"
-      style={{ background: 'linear-gradient(180deg, #FFFFFF 0%, #ECFEF1 100%)' }}
+      className="min-h-screen flex flex-col font-sans bg-surface-bege-verde"
     >
 
       {/* ── HEADER ─────────────────────────────────────── */}
@@ -32,9 +31,9 @@ export default function CadastroPage() {
         <Logo variant="dark" height={45} />
         <nav aria-label="Ações do usuário">
           <Link
-            to="/mapa"
-            className="text-sm font-medium transition-colors hover:underline"
-            style={{ color: '#0F5238', letterSpacing: '0.14px', lineHeight: '20px' }}
+            to="/dashboard"
+            className="text-sm font-medium transition-colors hover:underline text-verde-profundo"
+            style={{ letterSpacing: '0.14px', lineHeight: '20px' }}
             aria-label="Ir para o mapa — já tenho conta"
           >
             Já tenho conta
@@ -47,12 +46,8 @@ export default function CadastroPage() {
 
         {/* Card container com sombra */}
         <div
-          className="flex flex-col lg:flex-row w-full overflow-hidden"
-          style={{
-            borderRadius: '12px',
-            backgroundColor: '#FFFFFF',
-            boxShadow: '0px 4px 24px rgba(0, 0, 0, 0.04)',
-          }}
+          className="flex flex-col lg:flex-row w-full overflow-hidden rounded-card shadow-card"
+          style={{ backgroundColor: '#FFFFFF' }}
         >
 
           {/* ── COLUNA ESQUERDA: pitch com foto de fundo ── */}
@@ -136,9 +131,8 @@ export default function CadastroPage() {
           >
             <div className="max-w-[448px] w-full mx-auto flex flex-col gap-8">
               <h2
-                className="font-semibold"
+                className="font-semibold text-text-forte"
                 style={{
-                  color: '#101F17',
                   fontSize: '32px',
                   lineHeight: '1.25',
                   letterSpacing: '-0.32px',

@@ -228,7 +228,7 @@ export default function CadastroForm() {
     await new Promise((r) => setTimeout(r, 1400))
     setLoading(false)
     setSuccess(true)
-    setTimeout(() => navigate('/mapa'), 1800)
+    setTimeout(() => navigate('/dashboard'), 1800)
   }
 
   if (success) {
@@ -240,7 +240,7 @@ export default function CadastroForm() {
           Você receberá alertas pelo{' '}
           {form.canal === 'whatsapp' ? 'WhatsApp' : form.canal === 'sms' ? 'SMS' : 'ligação'}.
         </p>
-        <p className="text-xs" style={{ color: '#9CA3AF' }}>Redirecionando para o mapa…</p>
+        <p className="text-xs" style={{ color: '#9CA3AF' }}>Redirecionando para o dashboard...</p>
       </div>
     )
   }

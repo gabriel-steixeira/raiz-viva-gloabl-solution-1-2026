@@ -77,13 +77,12 @@ export default function RecomendacoesPage() {
   if (!estadoData) {
     return (
       <AppLayout userName="Agronomist User" userProfile="Profile & Settings">
-        <div className="flex flex-col items-center justify-center flex-1 gap-4 p-10 bg-[#FAFAF7]">
-          <h2 className="text-2xl font-bold text-[#1B2A22]">Região não encontrada</h2>
-          <p className="text-[#6B7280]">O estado "{regiaoId}" não está mapeado no sistema.</p>
+        <div className="flex flex-col items-center justify-center flex-1 gap-4 p-10 bg-branco-campo">
+          <h2 className="text-h2 font-bold text-carbon">Região não encontrada</h2>
+          <p className="text-cinza-solo">O estado "{regiaoId}" não está mapeado no sistema.</p>
           <button
             onClick={() => navigate('/mapa')}
-            className="flex items-center gap-2 px-5 py-2.5 rounded-full text-white font-semibold hover:opacity-90 transition-all"
-            style={{ backgroundColor: '#2D6A4F' }}
+            className="flex items-center gap-2 px-5 py-2.5 rounded-btn text-white font-semibold hover:opacity-90 transition-all bg-verde-raiz"
           >
             <ArrowLeft size={16} /> Voltar ao Mapa
           </button>
@@ -311,7 +310,7 @@ export default function RecomendacoesPage() {
       <TopBar showSearch={true} />
 
       {/* Área de conteúdo principal com fundo verde claro pastel do Figma (#EAF3EE) */}
-      <div className="flex-1 overflow-y-auto p-6 md:p-10 flex flex-col gap-6" style={{ backgroundColor: '#ECFEF1' }}>
+      <div className="flex-1 overflow-y-auto p-6 md:p-10 flex flex-col gap-6 bg-surface-verde-claro">
 
         {/* Container com largura máxima limitada e centralizado */}
         <div className="flex flex-col gap-6">
@@ -328,10 +327,10 @@ export default function RecomendacoesPage() {
           {/* Título Principal e Badge do ISS na mesma linha (flex justify-between) */}
           <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mt-2">
             <div className="flex flex-col gap-1 max-w-3xl">
-              <h1 className="text-3xl font-extrabold text-[#1B2A22] tracking-tight">
+              <h1 className="text-3xl font-extrabold text-carbon tracking-tight">
                 Recomendações — <span style={{ color: corRisco }}>{labelRisco}</span>
               </h1>
-              <p className="text-sm text-gray-500 font-medium leading-relaxed mt-0.5">
+              <p className="text-body-s text-cinza-solo font-medium leading-relaxed mt-0.5">
                 Baseado no índice de sustentabilidade atual e previsões meteorológicas para os próximos dias na região de {infoLocal.cidade}.
               </p>
             </div>
@@ -354,28 +353,31 @@ export default function RecomendacoesPage() {
           <div className="flex gap-8 border-b border-[#CADAD0] mt-4">
             <button
               onClick={() => setActiveTab('imediatas')}
-              className={`pb-3 text-sm transition-all mb-[-1px] ${activeTab === 'imediatas'
-                ? 'font-bold border-b-2 border-[#2D6A4F] text-[#1B2A22]'
-                : 'font-medium border-b-2 border-transparent text-[#6B7280] hover:text-[#1B2A22]'
-                }`}
+              className={`pb-3 text-body-s transition-all mb-[-1px] ${
+                activeTab === 'imediatas'
+                  ? 'font-bold border-b-2 border-verde-raiz text-carbon'
+                  : 'font-medium border-b-2 border-transparent text-cinza-solo hover:text-carbon'
+              }`}
             >
               Imediatas
             </button>
             <button
               onClick={() => setActiveTab('semana')}
-              className={`pb-3 text-sm transition-all mb-[-1px] ${activeTab === 'semana'
-                ? 'font-bold border-b-2 border-[#2D6A4F] text-[#1B2A22]'
-                : 'font-medium border-b-2 border-transparent text-[#6B7280] hover:text-[#1B2A22]'
-                }`}
+              className={`pb-3 text-body-s transition-all mb-[-1px] ${
+                activeTab === 'semana'
+                  ? 'font-bold border-b-2 border-verde-raiz text-carbon'
+                  : 'font-medium border-b-2 border-transparent text-cinza-solo hover:text-carbon'
+              }`}
             >
               Esta semana
             </button>
             <button
               onClick={() => setActiveTab('mes')}
-              className={`pb-3 text-sm transition-all mb-[-1px] ${activeTab === 'mes'
-                ? 'font-bold border-b-2 border-[#2D6A4F] text-[#1B2A22]'
-                : 'font-medium border-b-2 border-transparent text-[#6B7280] hover:text-[#1B2A22]'
-                }`}
+              className={`pb-3 text-body-s transition-all mb-[-1px] ${
+                activeTab === 'mes'
+                  ? 'font-bold border-b-2 border-verde-raiz text-carbon'
+                  : 'font-medium border-b-2 border-transparent text-cinza-solo hover:text-carbon'
+              }`}
             >
               Próximos 30 dias
             </button>
@@ -453,7 +455,7 @@ export default function RecomendacoesPage() {
                         </div>
 
                         {/* Título da Recomendação */}
-                        <h3 className={`text-base font-bold text-[#1B2A22] mt-1 leading-snug ${isConcluida ? 'line-through text-gray-400' : ''}`}>
+                        <h3 className={`text-body-l font-bold text-carbon mt-1 leading-snug ${isConcluida ? 'line-through text-cinza-solo' : ''}`}>
                           {rec.titulo}
                         </h3>
 
@@ -468,10 +470,11 @@ export default function RecomendacoesPage() {
                     <div className="flex-shrink-0 flex items-center justify-center sm:self-center">
                       <button
                         onClick={() => alternarConcluida(rec.id)}
-                        className={`flex items-center gap-1.5 px-5 py-2.5 rounded-full text-xs font-bold transition-all border active:scale-[0.98] ${isConcluida
-                          ? 'bg-[#2D6A4F] text-white border-[#2D6A4F]'
-                          : 'border-[#2D6A4F] text-[#2D6A4F] bg-transparent hover:bg-[#2D6A4F]/5'
-                          }`}
+                        className={`flex items-center gap-1.5 px-5 py-2.5 rounded-btn text-micro font-bold transition-all border active:scale-[0.98] ${
+                          isConcluida
+                            ? 'bg-verde-raiz text-branco-campo border-verde-raiz'
+                            : 'border-verde-raiz text-verde-raiz bg-transparent hover:bg-surface-verde-suave'
+                        }`}
                       >
                         <CheckCircle2 size={14} />
                         {isConcluida ? 'Concluído' : 'Marcar como feito'}

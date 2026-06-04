@@ -424,16 +424,16 @@ function AlertDetail({ alerta }: { alerta: Alerta }) {
             gap: '8px',
             padding: '12px',
             borderRadius: '12px',
-            border: '1.5px solid #2D6A4F',
+            border: '1.5px solid var(--verde-raiz)',
             background: 'transparent',
-            color: '#2D6A4F',
+            color: 'var(--verde-raiz)',
             fontSize: '14px',
             fontWeight: 600,
             fontFamily: 'Inter, sans-serif',
             cursor: 'pointer',
             transition: 'all 0.2s ease',
           }}
-          onMouseEnter={e => (e.currentTarget.style.background = '#F0FBF4')}
+          onMouseEnter={e => (e.currentTarget.style.background = 'var(--surface-verde-suave)')}
           onMouseLeave={e => (e.currentTarget.style.background = 'transparent')}
         >
           <RefreshCw size={16} strokeWidth={1.5} />
@@ -449,8 +449,8 @@ function AlertDetail({ alerta }: { alerta: Alerta }) {
             padding: '12px',
             borderRadius: '12px',
             border: 'none',
-            background: '#2D6A4F',
-            color: '#FFFFFF',
+            background: 'var(--verde-raiz)',
+            color: 'var(--branco-campo)',
             fontSize: '14px',
             fontWeight: 600,
             fontFamily: 'Inter, sans-serif',
@@ -458,7 +458,7 @@ function AlertDetail({ alerta }: { alerta: Alerta }) {
             transition: 'all 0.2s ease',
           }}
           onMouseEnter={e => (e.currentTarget.style.background = '#1B4D35')}
-          onMouseLeave={e => (e.currentTarget.style.background = '#2D6A4F')}
+          onMouseLeave={e => (e.currentTarget.style.background = 'var(--verde-raiz)')}
         >
           <BarChart2 size={16} strokeWidth={1.5} />
           Ver Relatório
@@ -514,7 +514,7 @@ export default function AlertasPage() {
       <div
         style={{
           flex: 1,
-          backgroundColor: '#ECFEF1',
+          backgroundColor: 'var(--surface-bege-verde, #EAF3EE)',
           padding: '32px',
           overflowY: 'auto',
         }}
@@ -538,8 +538,8 @@ export default function AlertasPage() {
               padding: '10px 20px',
               borderRadius: '24px',
               border: 'none',
-              background: '#2D6A4F',
-              color: '#FFFFFF',
+              background: 'var(--verde-raiz)',
+              color: 'var(--branco-campo)',
               fontSize: '14px',
               fontWeight: 600,
               fontFamily: 'Inter, sans-serif',
@@ -548,8 +548,8 @@ export default function AlertasPage() {
               boxShadow: '0 2px 8px rgba(45,106,79,0.3)',
               flexShrink: 0,
             }}
-            onMouseEnter={e => (e.currentTarget.style.background = '#1B4D35')}
-            onMouseLeave={e => (e.currentTarget.style.background = '#2D6A4F')}
+            onMouseEnter={e => (e.currentTarget.style.background = 'var(--verde-carbon)')}
+            onMouseLeave={e => (e.currentTarget.style.background = 'var(--verde-raiz)')}
           >
             <Send size={14} strokeWidth={1.5} />
             Enviar Alerta Manual

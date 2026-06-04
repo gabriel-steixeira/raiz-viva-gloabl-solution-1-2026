@@ -48,9 +48,9 @@ Você ajuda usuários a:
 
 | Arquivo | Caminho | Conteúdo |
 |---|---|---|
-| **Skills do Agente** | `agent/raiz_viva_skills.md` | Habilidades conversacionais: consultar ISS, gerar recomendações, explicar indicadores, cadastro guiado, carbono, modelo de negócio, suporte técnico, impacto social |
-| **Base de Conhecimento** | `agent/raiz_viva_knowledge_base.md` | Dados do produto: ISS, fontes de dados NASA, fluxo do sistema, recomendações por nível de risco, telas da plataforma, público-alvo, modelo de negócio, stack técnico, roadmap |
-| **Skill de Design** | `agent/raiz_viva_design_skill.md` | Identidade visual completa (paleta, tipografia, componentes), wireframes detalhados das 8 telas, fluxo de protótipo e estrutura do projeto Figma |
+| **Skills do Agente** | `agent/raiz_viva_skills.md` | Habilidades conversacionais: consultar ISS, gerar recomendações, explicar indicadores, cadastro guiado, carbono, modelo de negócio, suporte técnico, impacto social, **design tokens** |
+| **Base de Conhecimento** | `agent/raiz_viva_knowledge_base.md` | Dados do produto: ISS, fontes de dados NASA, fluxo do sistema, recomendações por nível de risco, **todas as 8 telas implementadas**, público-alvo, modelo de negócio, stack técnico (React + Vite + TS + Tailwind), **design tokens**, roadmap |
+| **Skill de Design** | `agent/raiz_viva_design_skill.md` | Identidade visual completa (paleta com 20+ tokens, tipografia Inter, componentes), **arquivos de tokens TS**, wireframes detalhados das 8 telas, fluxo de protótipo, estrutura do projeto Figma e React |
 
 ### 🔄 Regra de Carga das Skills
 
@@ -76,6 +76,7 @@ Você ajuda usuários a:
 - `skill_explicar_carbono` — Carbono Solidário, elegibilidade, agregação
 - `skill_impacto_social` — KPIs, Dona Maria, métricas de impacto
 
-**Design e Interface** (`raiz_viva_design_skill.md`)
-- `skill_identidade_visual` — paleta, tipografia, tokens, componentes
-- `skill_wireframes` — estrutura das 8 telas, layout, fluxo de protótipo
+**Design e Interface** (`raiz_viva_design_skill.md` + `raiz_viva_skills.md`)
+- `skill_identidade_visual` — paleta (20+ tokens), tipografia Inter, componentes
+- `skill_design_tokens` — arquivos `src/tokens/`, classes Tailwind, como usar tokens em código
+- `skill_wireframes` — estrutura das 8 telas implementadas, layout, fluxo de protótipo

@@ -1,14 +1,15 @@
 # Raiz Viva — Skill de Design: Identidade Visual e Wireframes
 
 ## skill_identidade_visual
-**Descrição:** Define e comunica a identidade visual oficial da plataforma Raiz Viva, incluindo paleta de cores, tipografia, espaçamentos e princípios de design.
+**Descrição:** Define e comunica a identidade visual oficial da plataforma Raiz Viva, incluindo paleta de cores, tipografia, espaçamentos, componentes e estrutura de tokens.
 
-**Gatilhos:** "qual a identidade visual", "cores do projeto", "tipografia", "design system", "como é o visual da plataforma", "padrão de interface"
+**Gatilhos:** "qual a identidade visual", "cores do projeto", "tipografia", "design system", "como é o visual da plataforma", "padrão de interface", "tokens de design"
 
 **Comportamento:**
 - Retorna a especificação completa do design system quando solicitado
 - Usa os tokens de cor e tipografia como referência para descrever telas e componentes
 - Orienta desenvolvedores e designers sobre a aplicação correta da identidade
+- Indica os arquivos de tokens TS e o tailwind.config.js como fonte de verdade
 
 ---
 
@@ -22,63 +23,118 @@
 
 ---
 
+### Arquivos de Design Tokens (Fonte de Verdade)
+
+> Todos os tokens estão em `src/tokens/`. Importe via `@/tokens`.
+
+| Arquivo | Conteúdo |
+|---|---|
+| `src/tokens/colors.ts` | Paleta completa tipada como `const` — cores, ISS, overlays, gradientes |
+| `src/tokens/typography.ts` | Escala tipográfica, pesos, line-heights, `textStyles` compostos |
+| `src/tokens/spacing.ts` | Spacing, radii, sombras, grid e layout tokens |
+| `src/tokens/index.ts` | Barrel export — `import { colors, typography, spacing } from '@/tokens'` |
+
+**Exemplo de uso:**
+```ts
+import { colors, textStyles } from '@/tokens'
+// style={{ backgroundColor: colors.verde.raiz, ...textStyles.h1 }}
+```
+
+---
+
 ### Paleta de Cores
 
-| Token | Hex | Uso |
+> Fonte de verdade: `src/tokens/colors.ts` e `tailwind.config.js`
+
+#### Verde (Primárias)
+| Token CSS / Tailwind | TS (`colors.verde.*`) | Hex | Uso |
+|---|---|---|---|
+| `--verde-raiz` / `bg-verde-raiz` | `.raiz` | `#2D6A4F` | Cor primária: botões CTA, sidebar ativa |
+| `--verde-claro` / `bg-verde-claro` | `.claro` | `#52B788` | Hover states, ISS baixo |
+| `--verde-menta` / `bg-verde-menta` | `.menta` | `#95D5B2` | Fills suaves, ícones sobre escuro |
+| `--verde-profundo` / `bg-verde-profundo` | `.profundo` | `#0F5238` | Heroes escuros, CTAs fortes |
+| `--verde-carbon` / `bg-verde-carbon` | `.carbon` | `#1B2A22` | Sidebar bg, textos principais |
+
+#### Alertas / Risco
+| Token CSS / Tailwind | Hex | Uso |
 |---|---|---|
-| `--verde-raiz` | `#2D6A4F` | Cor primária: botões CTA, cabeçalhos, sidebar |
-| `--verde-claro` | `#52B788` | Hover states, ISS baixo (badge verde) |
-| `--verde-menta` | `#95D5B2` | Backgrounds de sucesso, fills suaves |
-| `--bege-terra` | `#F4ECD8` | Background geral das telas |
-| `--terracota` | `#C1440E` | Alertas críticos, ISS alto (0–39) |
-| `--terracota-suave` | `#F4A261` | ISS alto/moderado, warnings secundários |
-| `--amarelo-seco` | `#E9C46A` | ISS moderado (40–69), atenção |
-| `--carbon` | `#1B2A22` | Textos principais |
-| `--cinza-solo` | `#6B7280` | Textos secundários, placeholders |
-| `--branco-campo` | `#FAFAF7` | Cards, superfícies elevadas |
-| `--borda-suave` | `#E5E0D5` | Bordas de cards e inputs |
+| `--terracota` / `bg-terracota` | `#C1440E` | Alertas críticos, ISS alto, botão danger |
+| `--terracota-suave` / `bg-terracota-suave` | `#F4A261` | Warnings, ISS alto/moderado |
+| `--terracota-escuro` / `bg-terracota-escuro` | `#832800` | Textos de erro fortes |
+| `--amarelo-seco` / `bg-amarelo-seco` | `#E9C46A` | ISS moderado (40–69), atenção |
+
+#### Background / Superfície
+| Token CSS / Tailwind | Hex | Uso |
+|---|---|---|
+| `--bege-terra` / `bg-bege-terra` | `#F4ECD8` | Background geral e hover secundário |
+| `--branco-campo` / `bg-branco-campo` | `#FAFAF7` | Cards, superfícies elevadas |
+| `--surface-verde-suave` | `#F0FAF4` | Fundos de cards internos |
+| `--surface-verde-claro` | `#ECFEF1` | Content area de pages |
+| `--surface-verde-pale` | `#D5E7DA` | AppLayout background raiz |
+| `--surface-bege-verde` | `#EAF3EE` | Cadastro/splash |
+
+#### Texto
+| Token CSS / Tailwind | Hex | Uso |
+|---|---|---|
+| `--text-primary` / `text-carbon` | `#1B2A22` | Textos principais |
+| `--text-secondary` / `text-cinza-solo` | `#6B7280` | Textos secundários, placeholders |
+| `--text-forte` / `text-text-forte` | `#101F17` | Títulos sobre fundo branco |
+| `--text-medio` / `text-text-medio` | `#404943` | Textos médios em pages |
+| `--text-sutil` / `text-text-sutil` | `#707973` | Ajuda, muito sutil |
+
+#### Bordas
+| Token CSS / Tailwind | Hex | Uso |
+|---|---|---|
+| `--borda-suave` / `border-borda-suave` | `#E5E0D5` | Bordas de cards e inputs |
 
 **Escala de risco ISS — cores:**
-- 🟢 ISS 70–100 → `#52B788` (verde-claro)
-- 🟡 ISS 40–69 → `#E9C46A` (amarelo-seco)
-- 🔴 ISS 0–39 → `#C1440E` (terracota)
+- 🟢 ISS 70–100 → `bg-iss-baixo` / `#D8F3DC` (texto `#2D6A4F`)
+- 🟡 ISS 40–69 → `bg-iss-moderado` / `#FFF3CD` (texto `#856404`)
+- 🔴 ISS 20–39 → `bg-iss-alto` / `#FFE0D5` (texto `#C1440E`)
+- ⚫ ISS 0–19 → `bg-iss-critico` / `#C1440E` (texto `#FAFAF7`)
 
 ---
 
 ### Tipografia
 
-**Família:** Inter (Google Fonts)
+> Fonte de verdade: `src/tokens/typography.ts`
 
-| Estilo | Peso | Tamanho | Uso |
-|---|---|---|---|
-| H1 | Bold 700 | 32px / 2rem | Títulos principais de página |
-| H2 | Bold 700 | 24px / 1.5rem | Subtítulos de seção |
-| H3 | SemiBold 600 | 20px / 1.25rem | Títulos de card |
-| Body L | Regular 400 | 16px / 1rem | Corpo de texto principal |
-| Body S | Regular 400 | 14px / 0.875rem | Texto secundário, labels |
-| Caption | Light 300 | 12px / 0.75rem | Datas, fontes, metadados |
-| Button | SemiBold 600 | 14px / 0.875rem | Textos de botões e CTAs |
+**Família:** Inter (Google Fonts) — importado via `@import` no `index.css`
 
-**Line-height padrão:** 1.5 para body, 1.2 para headings
+#### Escala (classes Tailwind)
+| Classe | Peso | Tamanho | Line-height | Uso |
+|---|---|---|---|---|
+| `text-h1` | Bold 700 | 32px / 2rem | 1.2 | Títulos principais de página |
+| `text-h2` | Bold 700 | 24px / 1.5rem | 1.2 | Subtítulos de seção |
+| `text-h3` | SemiBold 600 | 20px / 1.25rem | 1.2 | Títulos de card |
+| `text-body-l` | Regular 400 | 16px / 1rem | 1.5 | Corpo de texto principal |
+| `text-body-s` | Regular 400 | 14px / 0.875rem | 1.5 | Texto secundário, labels |
+| `text-caption` | Light 300 | 12px / 0.75rem | 1.5 | Datas, fontes, metadados |
+| `text-btn` | SemiBold 600 | 14px / 0.875rem | 1 | Textos de botões e CTAs |
+| `text-micro` | Medium 500 | 11px / 0.6875rem | 1.2 | Badges, chips |
+| `text-display` | Bold 700 | 40px / 2.5rem | 1.1 | KPIs grandes, números de impacto |
+
+#### textStyles compostos (para `style={}`)
+```ts
+import { textStyles } from '@/tokens'
+// textStyles.h1, textStyles.h2, textStyles.h3
+// textStyles.bodyL, textStyles.bodyS, textStyles.caption
+// textStyles.btn, textStyles.label, textStyles.kpi
+```
 
 ---
 
 ### Espaçamentos e Grid
 
-- **Grid:** 12 colunas, 24px gutter, 32px margin lateral (desktop 1440px)
-- **Border Radius:** 12px (cards), 8px (inputs/selects), 24px (botões), 4px (badges/chips)
-- **Sombra card:** `box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08)`
-- **Sombra modal:** `box-shadow: 0 8px 32px rgba(0, 0, 0, 0.16)`
+> Fonte de verdade: `src/tokens/spacing.ts`
 
-**Escala de espaçamentos:**
-- `4px` — micro (ícone + label)
-- `8px` — pequeno (padding interno de chip)
-- `12px` — compacto (gap entre itens de lista)
-- `16px` — padrão (padding de card)
-- `24px` — médio (gap entre cards)
-- `32px` — grande (gap entre seções)
-- `48px` — extra (espaço de hero)
-- `64px` — máximo (separação de blocos maiores)
+- **Grid:** 12 colunas, 24px gutter, margem 80px (lg) / 40px (md) / 24px (sm)
+- **Border Radius:** `rounded-badge` (4px), `rounded-input` (8px), `rounded-card` (12px), `rounded-section` (16px), `rounded-btn` (24px)
+- **Sombra card:** `shadow-card` → `0 2px 12px rgba(0,0,0,0.08)`
+- **Sombra section:** `shadow-section` → `0px 4px 20px -2px rgba(16,31,23,0.04)`
+- **Sombra modal:** `shadow-modal` → `0 8px 32px rgba(0,0,0,0.16)`
+- **Sidebar width:** `280px` (`var(--sidebar-width)`)
+- **TopBar height:** `72px` (`var(--topbar-height)`)
 
 ---
 
@@ -86,84 +142,84 @@
 
 #### Botão Primário
 ```
-Background: #2D6A4F | Texto: #FAFAF7 | Border-radius: 24px
-Padding: 12px 24px | Font: Inter SemiBold 14px
-Hover: background #1B4D35 | Transition: 200ms ease
+Background: bg-verde-raiz | Texto: text-branco-campo | rounded-btn
+Padding: px-6 py-3 | Font: text-btn
+Hover: bg-[#1B4D35] | Transition: 200ms ease
 ```
 
 #### Botão Secundário
 ```
-Background: transparent | Borda: 1.5px solid #2D6A4F
-Texto: #2D6A4F | Border-radius: 24px | Padding: 12px 24px
-Hover: background #F4ECD8
+Background: transparent | Borda: border-verde-raiz border-[1.5px]
+Texto: text-verde-raiz | rounded-btn
+Hover: bg-bege-terra
 ```
 
-#### Badge de Risco ISS
+#### Badge ISS
 ```
-Baixo:    background #D8F3DC | texto #2D6A4F | "ISS XX — Baixo Risco"
-Moderado: background #FFF3CD | texto #856404 | "ISS XX — Moderado"
-Alto:     background #FFE0D5 | texto #C1440E | "ISS XX — Risco ALTO"
-Crítico:  background #C1440E | texto #FAFAF7 | "ISS XX — CRÍTICO"
+Baixo:    bg-iss-baixo  | texto text-verde-raiz  | "ISS XX — Baixo Risco"
+Moderado: bg-iss-moderado | texto text-[#856404]  | "ISS XX — Moderado"
+Alto:     bg-iss-alto   | texto text-terracota   | "ISS XX — Risco ALTO"
+Crítico:  bg-iss-critico | texto text-branco-campo | "ISS XX — CRÍTICO"
 ```
 
 #### Card Padrão
 ```
-Background: #FAFAF7 | Border: 1px solid #E5E0D5
-Border-radius: 12px | Padding: 20px | Sombra: 0 2px 12px rgba(0,0,0,0.08)
+Background: bg-branco-campo | Border: border border-borda-suave
+rounded-card | p-5 | shadow-card
 ```
 
 #### Input / Select
 ```
-Border: 1.5px solid #E5E0D5 | Border-radius: 8px | Padding: 10px 14px
-Focus: border-color #2D6A4F | Background: #FAFAF7
-Label: Inter SemiBold 12px, #6B7280, uppercase
+Border: border-[1.5px] border-borda-suave | rounded-input | px-3.5 py-2.5
+Focus: focus:border-verde-raiz | Background: bg-branco-campo
+Label: text-caption font-semibold text-cinza-solo uppercase tracking-wide
 ```
 
 #### Sidebar de Navegação
 ```
-Largura: 280px | Background: #1B2A22 | Texto: #FAFAF7
-Item ativo: background #2D6A4F, border-left 3px solid #52B788
-Ícones: Lucide Icons (stroke-width: 1.5)
+Largura: 280px | Background: bg-verde-carbon (#1B2A22) | Texto: text-white
+Item ativo: bg-verde-raiz border-l-4 border-verde-claro
+Ícones: Lucide Icons (strokeWidth: 1.5)
 ```
 
 ---
 
 ## Componentes React Implementados
 
-> Todos os componentes estão em `src/components/`. Importar via `@/components/ui` (componentes globais) ou pelo caminho relativo.
+> Todos em `src/components/`. Importar via `@/components/ui`.
 
-### 📦 Componentes Globais — `src/components/ui/`
+### Componentes Globais — `src/components/ui/`
 
-| Componente | Arquivo | Descrição | Telas que usa |
+| Componente | Arquivo | Status Tokens | Telas |
 |---|---|---|---|
-| `<Button>` | `Button.tsx` | Botão primário/secundário/ghost com loading | Todas |
-| `<Input>` | `Input.tsx` | Input com label, error, placeholder | T1, T5 |
-| `<Select>` | `Select.tsx` | Select dropdown com label e error | T1, T2, T5 |
-| `<RadioGroup>` | `RadioGroup.tsx` | Grupo de radio buttons acessível | T1 |
-| `<Card>` | `Card.tsx` | Card base com sombra e padding | Todas |
-| `<Badge>` | `Badge.tsx` | Badge genérico de status/label | Todas |
-| `<Logo>` | `Logo.tsx` | Logo Raiz Viva (light/dark) | T1, T2–T8 |
-| `<IssBadge>` | `IssBadge.tsx` | Badge ISS com cores de risco automáticas | T2, T3, T6 |
-| `<Sidebar>` | `Sidebar.tsx` | Navegação lateral das telas autenticadas | T2–T8 |
-| `<TopBar>` | `TopBar.tsx` | Barra superior com título, badge e ações | T2–T8 |
-| `<AppLayout>` | `AppLayout.tsx` | Layout base: Sidebar + Content (wrapper) | T2–T8 |
-| `<FilterBar>` | `FilterBar.tsx` | Barra de filtros horizontais (selects) | T2, T5, T6 |
-| `<Breadcrumb>` | `Breadcrumb.tsx` | Trilha de navegação com links | T3, T4 |
+| `<Button>` | `Button.tsx` | ✅ Usa tokens Tailwind | Todas |
+| `<Input>` | `Input.tsx` | ✅ Usa tokens Tailwind | T1, T5 |
+| `<Select>` | `Select.tsx` | ✅ Usa tokens Tailwind | T1, T2, T5 |
+| `<RadioGroup>` | `RadioGroup.tsx` | ✅ | T1 |
+| `<Badge>` | `Badge.tsx` | ✅ | Todas |
+| `<Logo>` | `Logo.tsx` | — | T1, T2–T8 |
+| `<IssBadge>` | `IssBadge.tsx` | ✅ (style={} ISS fixo) | T2, T3, T6 |
+| `<Sidebar>` | `Sidebar.tsx` | ⚠️ Hex direto (migrar p/ tokens) | T2–T8 |
+| `<TopBar>` | `TopBar.tsx` | ⚠️ Hex direto (migrar p/ tokens) | T2–T8 |
+| `<AppLayout>` | `AppLayout.tsx` | ⚠️ Hex direto (migrar p/ tokens) | T2–T8 |
+| `<FilterBar>` | `FilterBar.tsx` | ⚠️ Hex direto (migrar p/ tokens) | T2, T5, T6 |
+| `<FilterChip>` | `FilterChip.tsx` | — | T2, T5 |
+| `<Breadcrumb>` | `Breadcrumb.tsx` | — | T3, T4 |
 
-### 🗺️ Componentes do Mapa — `src/components/mapa/`
+### Componentes do Mapa — `src/components/mapa/`
 
 | Componente | Arquivo | Descrição |
 |---|---|---|
 | `<BrazilMap>` | `BrazilMap.tsx` | SVG do Brasil com estados clicáveis, coloridos por ISS |
-| `<MapLegend>` | `MapLegend.tsx` | Legenda de cores ISS (canto do mapa) |
-| `<RegionSidePanel>` | `RegionSidePanel.tsx` | Painel lateral com preview da região selecionada |
+| `<MapLegend>` | `MapLegend.tsx` | Legenda de cores ISS |
+| `<RegionSidePanel>` | `RegionSidePanel.tsx` | Painel lateral preview da região |
 
-### 📋 Componentes de Cadastro — `src/components/cadastro/`
+### Componentes de Cadastro — `src/components/cadastro/`
 
 | Componente | Arquivo | Descrição |
 |---|---|---|
-| `<CadastroForm>` | `CadastroForm.tsx` | Formulário completo de cadastro com validação |
-| `<BenefitItem>` | `BenefitItem.tsx` | Item de benefício com ícone, título e descrição |
+| `<CadastroForm>` | `CadastroForm.tsx` | Formulário completo com validação |
+| `<BenefitItem>` | `BenefitItem.tsx` | Item de benefício com ícone |
 
 ---
 
@@ -171,11 +227,6 @@ Item ativo: background #2D6A4F, border-left 3px solid #52B788
 **Descrição:** Descreve a estrutura completa de cada tela da plataforma Raiz Viva com layout, componentes e conteúdo esperado.
 
 **Gatilhos:** "como é a tela de", "estrutura das telas", "wireframe de", "layout da plataforma", "quais são as telas"
-
-**Comportamento:**
-- Retorna a estrutura detalhada da tela solicitada
-- Descreve hierarquia de componentes, conteúdo e ações disponíveis
-- Quando solicitado "todas as telas", retorna o índice completo com links internos
 
 ---
 
@@ -191,255 +242,168 @@ Item ativo: background #2D6A4F, border-left 3px solid #52B788
 > Página: `src/pages/CadastroPage.tsx`
 
 ```
-HEADER (altura 72px):
-  [Logo Raiz Viva — branco sobre verde-raiz]  [Link: "Já tenho conta"]
-
+HEADER (72px): [Logo] [Link: "Já tenho conta"]
 HERO (2 colunas):
-  COLUNA ESQUERDA (fundo #2D6A4F, padding 64px):
-    H1: "Proteja sua lavoura com alertas de satélite"
-    Body: "Receba avisos gratuitos de seca, calor e risco do solo direto no seu celular."
-    [BenefitItem] 🛰️ Dados NASA
-    [BenefitItem] 🌱 100% gratuito
-    [BenefitItem] 📱 SMS/WhatsApp/Voz
-    [Blockquote] Dona Maria — depoimento
-
-  COLUNA DIREITA (fundo #F4ECD8, padding 48px):
-    H2: "Criar conta gratuita"
-    [CadastroForm]:
-      [RadioGroup] Tipo: Agricultor | Cooperativa
-      [Input] Nome completo
-      [Input] Município
-      [Select] Estado (UF) + [Select] Cultura principal
-      [RadioGroup] Canal preferido
-      [Input] Telefone
-      [Button Primário] "Cadastrar e receber alertas grátis"
-      [Caption] Disclaimer de privacidade
+  ESQ (fundo #2D6A4F, p-16): H1 + Body + BenefitItems + Depoimento Dona Maria
+  DIR (fundo #F4ECD8, p-12): H2 + CadastroForm + Button + Caption disclaimer
 ```
-
-**Componentes usados:** `Logo`, `BenefitItem`, `CadastroForm`, `Button`, `Input`, `Select`, `RadioGroup`
 
 ---
 
 ### Tela 2 — Mapa Nacional de Risco ✅ IMPLEMENTADA
-> Rota: `/mapa` | Autenticada | Com sidebar
-> Página: `src/pages/MapaPage.tsx`
+> Rota: `/mapa` | Com sidebar | `src/pages/MapaPage.tsx`
 
 ```
-[AppLayout] = Sidebar (280px) + Content:
-
-SIDEBAR:
-  [Logo] Raiz Viva
-  [Avatar] Nome | Perfil
-  [Nav]: 📍 Mapa (ativo) | 🔔 Alertas | 📊 Dashboard | 🌿 Impacto | 🌳 Carbono
-  [Footer] Versão | Suporte
-
-CONTENT:
-  [TopBar] "Mapa Nacional de Risco" | Badge atualização | [Button] Exportar
-  [FilterBar] Bioma | Estado | Cultura | Período
-
-  CORPO (flex row):
-    [BrazilMap] (fill):
-      Estados coloridos por ISS
-      Click em estado → abre RegionSidePanel
-      [MapLegend] canto inferior esquerdo
-    [RegionSidePanel] (320px, condicional):
-      Nome + Estado
-      [IssBadge]
-      Cards: Tendência | Famílias
-      Última atualização
-      [Button] "Ver detalhes completos →" → /mapa/:id
+[AppLayout]: Sidebar(280px) + Content
+  [TopBar] + [FilterBar] Bioma|Estado|Cultura|Período
+  [BrazilMap] + [RegionSidePanel] condicional
 ```
-
-**Componentes usados:** `AppLayout`, `Sidebar`, `TopBar`, `FilterBar`, `BrazilMap`, `MapLegend`, `RegionSidePanel`, `IssBadge`
 
 ---
 
-### Tela 3 — Detalhe da Comunidade
-> Rota: `/mapa/:regiao` | Autenticada | Com sidebar
+### Tela 3 — Detalhe da Comunidade ✅ IMPLEMENTADA
+> Rota: `/mapa/:regiao` | `src/pages/DetalheRegiaoPage.tsx`
 
 ```
-[AppLayout]
-CONTENT:
-  [Breadcrumb] Mapa › Quixadá, CE
-
-  HERO CARD (fundo terracota suave, 100% largura):
-    [IssBadge] grande | Subtítulo: região | Badge confiança
-    [Button] "Ver Recomendações"  [Button] "Enviar Alerta"
-
-  ROW DE INDICADORES (4 cards):
-    [Card] 💧 Umidade do Solo (SMAP)
-    [Card] 🌿 Saúde da Vegetação (NDVI)
-    [Card] 🌧️ Déficit de Chuva (GPM)
-    [Card] 🌡️ Temperatura de Superfície (MODIS LST)
-
-  SEÇÃO GRÁFICO + MAPA (2 colunas):
-    Gráfico linha ISS — últimos 90 dias
-    Mini mapa regional com municípios vizinhos
+[Breadcrumb] Mapa › Quixadá, CE
+Hero Card: [IssBadge] grande + botões
+Row 4 cards: Umidade|NDVI|Déficit Chuva|Temperatura
+Gráfico ISS 90 dias + Mini mapa
 ```
-
-**Componentes a criar:** `IndicatorCard`, mini mapa, `IssLineChart`
 
 ---
 
-### Tela 4 — Recomendações Inteligentes
-> Rota: `/mapa/:regiao/recomendacoes` | Autenticada | Com sidebar
+### Tela 4 — Recomendações Inteligentes ✅ IMPLEMENTADA
+> Rota: `/mapa/:regiao/recomendacoes` | `src/pages/RecomendacoesPage.tsx`
 
 ```
-[AppLayout]
-CONTENT:
-  [Breadcrumb] Mapa › Quixadá, CE › Recomendações
-  H1 + [IssBadge]
-
-  [Tab] ⚡ Imediatas | 📅 Esta semana | 📆 30 dias
-
-  LISTA:
-    [RecommendationCard — URGENTE] borda terracota
-    [RecommendationCard — IMPORTANTE] borda amarela
-    [RecommendationCard — RECOMENDADO]
-    [RecommendationCard — PREVENTIVO]
+[Breadcrumb] + H1 + [IssBadge]
+[Tabs] Imediatas | Esta semana | 30 dias
+Lista [RecommendationCard] com urgência (borda terracota/amarelo)
 ```
-
-**Componentes a criar:** `TabGroup`, `RecommendationCard`
 
 ---
 
-### Tela 5 — Alertas
-> Rota: `/alertas` | Autenticada | Com sidebar
+### Tela 5 — Alertas ✅ IMPLEMENTADA
+> Rota: `/alertas` | `src/pages/AlertasPage.tsx`
 
 ```
-[AppLayout — Alertas ativo]
-CONTENT:
-  [TopBar] "Central de Alertas" | [Button] "+ Enviar Alerta Manual"
-  [FilterBar] Tipo | Período | Região | Status
-
-  LAYOUT 2 COLUNAS:
-    Timeline de alertas (cards com status, ícone, famílias, canais)
-    Preview do alerta selecionado (mensagem WhatsApp, estatísticas)
+[TopBar] "Central de Alertas" + [Button] "+ Enviar Alerta Manual"
+[FilterBar] Tipo|Período|Região|Status
+Layout 2 colunas: Timeline alertas + Preview alerta selecionado
 ```
-
-**Componentes a criar:** `AlertCard`, `AlertPreview`, `AlertTimeline`
 
 ---
 
-### Tela 6 — Dashboard Operacional
-> Rota: `/dashboard` | Autenticada | Com sidebar
+### Tela 6 — Dashboard Operacional ✅ IMPLEMENTADA
+> Rota: `/dashboard` | `src/pages/DashboardPage.tsx`
 
 ```
-[AppLayout — Dashboard ativo]
-CONTENT:
-  [TopBar] "Dashboard Operacional" | DatePicker | Exportar PDF
-
-  ROW KPIs (4 cards): Famílias | Alertas | Hectares | ISS Médio
-  ROW Gráficos: ISS por Bioma (linhas) | Distribuição de Risco (donut)
-  Tabela: Regiões Críticas
+[TopBar] "Dashboard Operacional"
+Row KPIs (4 cards): Famílias|Alertas|Hectares|ISS Médio
+Gráficos + Tabela Regiões Críticas
 ```
-
-**Componentes a criar:** `KpiCard`, `IssMultiLineChart`, `RiskDonutChart`, `CriticalRegionsTable`
 
 ---
 
-### Tela 7 — Impacto Social
-> Rota: `/impacto` | Autenticada | Com sidebar
+### Tela 7 — Impacto Social ✅ IMPLEMENTADA
+> Rota: `/impacto` | `src/pages/ImpactoPage.tsx`
 
 ```
-[AppLayout — Impacto ativo]
-CONTENT:
-  HERO verde com contadores animados
-  Caso de uso Dona Maria (foto + citação + badge de perda evitada)
-  Gráfico barras: perdas evitadas vs estimadas
-  Mapa com pins de impacto por município
+Hero verde (#0F5238) com KPIs glassmorphism
+Bento grid: História Real (Dona Maria) + Perdas Evitadas (bar chart)
+Mapa de Impacto com pins proporcionais
 ```
-
-**Componentes a criar:** `ImpactCounter`, `TestimonialCard`, `ImpactBarChart`
 
 ---
 
-### Tela 8 — Carbono Solidário
-> Rota: `/carbono` | Autenticada | Com sidebar
+### Tela 8 — Carbono Solidário ✅ IMPLEMENTADA
+> Rota: `/carbono` | `src/pages/CarbonoPage.tsx`
 
 ```
-[AppLayout — Carbono ativo]
-CONTENT:
-  HERO terracota-suave + chips
-  3 cards de elegibilidade
-  Infográfico 4 etapas do modelo coletivo
-  Mapa de áreas elegíveis + CTA card
+Hero gradiente verde + chip "100% Opcional"
+3 cards Critérios de Elegibilidade
+4 etapas do modelo (grid)
+Mapa + CTA card Potencial da cooperativa
 ```
-
-**Componentes a criar:** `EligibilityCard`, `ProcessStep`, `CarbonPotentialCard`
 
 ---
 
 ## Fluxo de Protótipo
 
 ```
-[T1 Cadastro]
-  └─ "Cadastrar e receber alertas grátis" ──────────→ [T2 Mapa Nacional]
-
-[T2 Mapa Nacional]
-  └─ Click em estado do mapa ───────────────────────→ [RegionSidePanel]
-  └─ "Ver detalhes completos" no SidePanel ──────────→ [T3 Detalhe Comunidade]
-  └─ Sidebar: Alertas ──────────────────────────────→ [T5 Alertas]
-  └─ Sidebar: Dashboard ────────────────────────────→ [T6 Dashboard]
-  └─ Sidebar: Impacto Social ───────────────────────→ [T7 Impacto Social]
-  └─ Sidebar: Carbono Solidário ────────────────────→ [T8 Carbono Solidário]
-
-[T3 Detalhe Comunidade]
-  └─ "Ver Recomendações" ───────────────────────────→ [T4 Recomendações]
-  └─ Breadcrumb "Mapa" ─────────────────────────────→ [T2 Mapa Nacional]
-
-[T4 Recomendações]
-  └─ Breadcrumb "Quixadá, CE" ──────────────────────→ [T3 Detalhe Comunidade]
-
-[T5 Alertas]
-  └─ Sidebar: Mapa ─────────────────────────────────→ [T2 Mapa Nacional]
-
-[T6 Dashboard]
-  └─ Click em linha "Ver detalhes" ─────────────────→ [T3 Detalhe Comunidade]
-
-[T7, T8] └─ Sidebar: Mapa ────────────────────────→ [T2 Mapa Nacional]
+[T1 Cadastro] → [T2 Mapa Nacional]
+[T2] → click estado → [RegionSidePanel] → "Ver detalhes" → [T3 Detalhe]
+[T3] → "Ver Recomendações" → [T4 Recomendações]
+[T2] Sidebar → [T5 Alertas] | [T6 Dashboard] | [T7 Impacto] | [T8 Carbono]
 ```
 
 ---
 
-## Estrutura do Projeto React
+## Próximos Passos do Design System
+
+### Prioridade Alta
+1. Migrar hex hardcoded nas pages para tokens Tailwind ou `import { colors } from '@/tokens'`
+2. Migrar `Sidebar`, `TopBar`, `AppLayout`, `FilterBar` para tokens
+
+### Prioridade Média
+3. Criar variante `ghost` no `Button`
+4. Criar `<Card>` reutilizável com variantes (default, verde-suave, hero)
+5. Criar `<SectionHeader>` (heading + subtítulo + divisor)
+
+### Prioridade Baixa
+6. Decidir sobre `#E0F2E6` / `#92F7C3` — criar token ou mapear para `verde-menta`
+7. Substituir `clamp()` por `text-display`
+
+---
+
+## Estrutura de Arquivos
 
 ```
 src/
+├── tokens/                  ← Design tokens (FONTE DE VERDADE)
+│   ├── colors.ts            ← Paleta completa tipada
+│   ├── typography.ts        ← Escala + textStyles compostos
+│   ├── spacing.ts           ← Spacing, radii, sombras, grid
+│   └── index.ts             ← Barrel export
 ├── components/
-│   ├── ui/                  ← Componentes globais reutilizáveis
+│   ├── ui/                  ← Componentes globais
 │   │   ├── Button.tsx
 │   │   ├── Input.tsx
 │   │   ├── Select.tsx
 │   │   ├── RadioGroup.tsx
-│   │   ├── Card.tsx
 │   │   ├── Badge.tsx
 │   │   ├── Logo.tsx
-│   │   ├── IssBadge.tsx     ← Badge ISS com escala de cores
-│   │   ├── Sidebar.tsx      ← Nav lateral autenticada
-│   │   ├── TopBar.tsx       ← Barra superior autenticada
-│   │   ├── AppLayout.tsx    ← Wrapper Sidebar + Content
-│   │   ├── FilterBar.tsx    ← Filtros horizontais
-│   │   ├── Breadcrumb.tsx   ← Trilha de navegação
+│   │   ├── IssBadge.tsx
+│   │   ├── Sidebar.tsx
+│   │   ├── TopBar.tsx
+│   │   ├── AppLayout.tsx
+│   │   ├── FilterBar.tsx
+│   │   ├── FilterChip.tsx
+│   │   ├── Breadcrumb.tsx
 │   │   └── index.ts
-│   ├── mapa/                ← Componentes exclusivos Tela 2
+│   ├── mapa/
 │   │   ├── BrazilMap.tsx
 │   │   ├── MapLegend.tsx
-│   │   ├── RegionSidePanel.tsx
-│   │   └── index.ts
-│   └── cadastro/            ← Componentes exclusivos Tela 1
+│   │   └── RegionSidePanel.tsx
+│   └── cadastro/
 │       ├── CadastroForm.tsx
 │       └── BenefitItem.tsx
-├── pages/
+├── pages/                   ← 8 telas implementadas
 │   ├── CadastroPage.tsx     ← T1 ✅
-│   └── MapaPage.tsx         ← T2 ✅
-├── data/
+│   ├── MapaPage.tsx         ← T2 ✅
+│   ├── DetalheRegiaoPage.tsx← T3 ✅
+│   ├── RecomendacoesPage.tsx← T4 ✅
+│   ├── AlertasPage.tsx      ← T5 ✅
+│   ├── DashboardPage.tsx    ← T6 ✅
+│   ├── ImpactoPage.tsx      ← T7 ✅
+│   └── CarbonoPage.tsx      ← T8 ✅
+├── data/                    ← Dados mockados
 │   ├── estados.ts
 │   ├── culturas.ts
-│   └── regioes.ts           ← Mock dados das regiões
-└── tokens/
-    ├── colors.ts
-    ├── spacing.ts
-    ├── typography.ts
-    └── index.ts
+│   ├── regioes.ts
+│   ├── carbono.ts
+│   ├── dashboard.ts
+│   └── impacto.ts
+└── index.css                ← CSS custom properties + @import Inter
 ```

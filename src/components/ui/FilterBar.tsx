@@ -15,22 +15,21 @@ export interface FilterBarProps {
 
 /**
  * FilterBar — Barra de filtros horizontais
- * Fiel ao Figma: ícone de filtro, rótulos compactos integrados e calendário "Últimos 30 dias".
+ * Design tokens: bg-white border-borda-suave | selects com border-borda-suave
+ * Período "Últimos 30 dias" com ícone Calendar
  */
 export default function FilterBar({ filters }: FilterBarProps) {
   return (
     <div
-      className="flex items-center gap-4 px-10 flex-shrink-0"
+      className="flex items-center gap-4 px-10 flex-shrink-0 bg-white border-b border-borda-suave"
       style={{
-        backgroundColor: '#FFFFFF',
-        borderBottom: '1px solid #E5E0D5',
-        minHeight: '56px',
+        minHeight: 'var(--filterbar-height)',
         paddingTop: '10px',
         paddingBottom: '10px',
       }}
     >
       {/* Filtros label + ícone */}
-      <div className="flex items-center gap-2 mr-2" style={{ color: '#52735F' }}>
+      <div className="flex items-center gap-2 mr-2 text-verde-raiz">
         <SlidersHorizontal size={14} strokeWidth={2} />
         <span className="text-xs font-bold uppercase tracking-wider font-sans">
           Filtros:
@@ -44,15 +43,9 @@ export default function FilterBar({ filters }: FilterBarProps) {
             <select
               value={f.value}
               onChange={(e) => f.onChange(e.target.value)}
-              className="appearance-none pr-8 pl-4 py-1.5 rounded-lg text-xs font-semibold cursor-pointer focus:outline-none transition-all font-sans"
-              style={{
-                border: '1.5px solid #E5E0D5',
-                color: '#1B2A22',
-                backgroundColor: '#FFFFFF',
-                minWidth: '100px',
-              }}
+              className="appearance-none pr-8 pl-4 py-1.5 rounded-lg text-xs font-semibold cursor-pointer focus:outline-none transition-all font-sans bg-white text-verde-carbon border-[1.5px] border-borda-suave focus:border-verde-raiz"
+              style={{ minWidth: '100px' }}
             >
-              {/* O próprio select age como label quando sem seleção */}
               <option value="">{f.label}</option>
               {f.options.map((opt) => (
                 <option key={opt.value} value={opt.value}>
@@ -63,23 +56,17 @@ export default function FilterBar({ filters }: FilterBarProps) {
             <ChevronDown
               size={13}
               strokeWidth={2}
-              className="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none"
-              style={{ color: '#6B7280' }}
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-cinza-solo"
             />
           </div>
         ))}
 
-        {/* Período: Últimos 30 dias com calendário */}
+        {/* Período: Últimos 30 dias */}
         <div className="relative">
           <div
-            className="flex items-center gap-2 pr-4 pl-3 py-1.5 rounded-lg text-xs font-semibold border font-sans cursor-pointer hover:bg-gray-50 transition-colors"
-            style={{
-              borderColor: '#E5E0D5',
-              backgroundColor: '#FFFFFF',
-              color: '#1B2A22',
-            }}
+            className="flex items-center gap-2 pr-4 pl-3 py-1.5 rounded-lg text-xs font-semibold border border-borda-suave font-sans cursor-pointer hover:bg-bege-terra transition-colors text-verde-carbon bg-white"
           >
-            <Calendar size={13} strokeWidth={2} style={{ color: '#6B7280' }} />
+            <Calendar size={13} strokeWidth={2} className="text-cinza-solo" />
             <span>Últimos 30 dias</span>
           </div>
         </div>

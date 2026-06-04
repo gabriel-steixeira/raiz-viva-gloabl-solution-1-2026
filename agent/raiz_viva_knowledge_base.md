@@ -68,14 +68,19 @@ Os pesos (w1–w4) são calibráveis por bioma e cultura. No MVP, pesos fixos ba
 - Comunicar à defesa civil se houver risco de deslocamento
 
 ## 7. Telas da Plataforma
-1. **Cadastro**: Agricultura Familiar e Cooperativa
-2. **Mapa Nacional de Risco**: regiões coloridas por ISS, filtros por bioma/estado
-3. **Detalhe da Comunidade**: série temporal do ISS, 4 indicadores, nível de confiança
-4. **Recomendações Inteligentes**: ações práticas priorizadas por urgência
-5. **Alertas**: histórico 30 dias, alertas por tema, envio manual
-6. **Dashboard Operacional**: KPIs, gráficos, métricas de impacto
-7. **Impacto Social**: famílias protegidas, hectares, redução de perdas
-8. **Carbono Solidário**: áreas elegíveis, potencial de captura, receita estimada
+
+Todas as 8 telas estão **implementadas** em `src/pages/`.
+
+| Nº | Nome | Rota | Arquivo |
+|---|---|---|---|
+| T1 | Cadastro | `/cadastro` | `CadastroPage.tsx` |
+| T2 | Mapa Nacional de Risco | `/mapa` | `MapaPage.tsx` |
+| T3 | Detalhe da Comunidade | `/mapa/:regiao` | `DetalheRegiaoPage.tsx` |
+| T4 | Recomendações Inteligentes | `/mapa/:regiao/recomendacoes` | `RecomendacoesPage.tsx` |
+| T5 | Central de Alertas | `/alertas` | `AlertasPage.tsx` |
+| T6 | Dashboard Operacional | `/dashboard` | `DashboardPage.tsx` |
+| T7 | Impacto Social | `/impacto` | `ImpactoPage.tsx` |
+| T8 | Carbono Solidário | `/carbono` | `CarbonoPage.tsx` |
 
 ## 8. Público-Alvo
 - Agricultores familiares
@@ -103,15 +108,30 @@ Os pesos (w1–w4) são calibráveis por bioma e cultura. No MVP, pesos fixos ba
 - **Alerta é gratuito e independente. Carbono é bônus opcional.**
 
 ## 11. Stack Técnico
-- **Frontend**: React + Vite, Leaflet/Mapbox
+- **Frontend**: React + Vite + TypeScript + TailwindCSS
+- **Design System**: tokens em `src/tokens/` (colors.ts, typography.ts, spacing.ts)
+- **Componentes**: Lucide Icons (strokeWidth: 1.5), Inter (Google Fonts)
 - **Backend**: Python (FastAPI), rasterio, xarray, numpy, geopandas
 - **IA/ML**: scikit-learn (MVP), LSTM/Prophet (fase 2)
 - **Banco de dados**: PostgreSQL + PostGIS (ou SQLite/GeoJSON no MVP)
 - **Alertas**: Twilio / WhatsApp Cloud API (ou simulação no MVP)
 - **Deploy**: Docker, Render/Railway/Vercel
 
-## 12. Roadmap
-- **Fase 1 (MVP)**: ISS em 1–2 regiões, painel web, alerta simulado/integrado
+## 12. Design System — Arquivos de Tokens
+
+Fonte de verdade para cores, tipografia e espaçamento:
+
+| Arquivo | Conteúdo |
+|---|---|
+| `src/tokens/colors.ts` | Paleta completa tipada (`colors.verde.raiz`, `colors.surface.verdeSuave`, etc.) |
+| `src/tokens/typography.ts` | Escala tipográfica + `textStyles` compostos para `style={}` |
+| `src/tokens/spacing.ts` | Spacing, radii, sombras, grid e layout tokens |
+| `src/tokens/index.ts` | Barrel export: `import { colors, typography } from '@/tokens'` |
+| `tailwind.config.js` | Espelha todos os tokens para classes Tailwind |
+| `src/index.css` | CSS custom properties (`--verde-raiz`, etc.) + `@import` Inter |
+
+## 13. Roadmap
+- **Fase 1 (MVP)**: ISS em 1–2 regiões, painel web, alerta simulado/integrado ✅
 - **Fase 2**: previsão por IA de série temporal; cobertura ampliada; app + SMS reais
 - **Fase 3**: integração com cooperativas e defesa civil; módulo MRV de carbono
 - **Fase 4**: expansão regional/nacional e parcerias institucionais

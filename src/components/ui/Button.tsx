@@ -4,14 +4,15 @@ import React from 'react'
  * Raiz Viva — Componente: Button
  *
  * Variantes:
- *  - primary:   bg #2D6A4F, texto branco, hover #1B4D35
- *  - secondary: transparente, borda #2D6A4F, hover bg #F4ECD8
- *  - danger:    bg #C1440E para ações críticas
+ *  - primary:   bg verde-raiz, texto branco, hover #1B4D35
+ *  - secondary: transparente, borda verde-raiz, hover bege-terra
+ *  - ghost:     sem borda/bg, texto verde-raiz, hover bg surface-verde-suave
+ *  - danger:    bg terracota para ações críticas
  *
- * Border-radius: 24px | Padding: 12px 24px | Font: Inter SemiBold 14px
+ * Border-radius: rounded-btn (24px) | Padding: 12px 24px | Font: text-btn
  */
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'danger'
+  variant?: 'primary' | 'secondary' | 'ghost' | 'danger'
   size?: 'sm' | 'md' | 'lg'
   fullWidth?: boolean
   loading?: boolean
@@ -23,6 +24,8 @@ const variantClasses: Record<string, string> = {
     'bg-verde-raiz text-branco-campo border border-transparent hover:bg-[#1B4D35] active:bg-[#163D29]',
   secondary:
     'bg-transparent text-verde-raiz border border-verde-raiz hover:bg-bege-terra active:bg-borda-suave',
+  ghost:
+    'bg-transparent text-verde-raiz border border-transparent hover:bg-surface-verde-suave active:bg-surface-verde-claro',
   danger:
     'bg-terracota text-branco-campo border border-transparent hover:bg-[#A03A0C] active:bg-[#8A3209]',
 }

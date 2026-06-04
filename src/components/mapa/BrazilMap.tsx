@@ -60,7 +60,7 @@ export default function BrazilMap({ regions, selectedRegionId, onRegionClick }: 
       {/* Imagem do Brasil centralizada e reta (sem rotação de -15deg) */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <img
-          src={`${base}/images/map-brazil.png`}
+          src={`${base}/images/teste.png`} //map-brazil.png`}
           alt="Mapa do Brasil ISS"
           aria-hidden="true"
           style={{

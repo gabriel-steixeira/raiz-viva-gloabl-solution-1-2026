@@ -35,25 +35,22 @@ export default function ImpactoPage() {
         {/* ─── HERO SECTION ─── */}
         <section
           aria-label="Raiz Viva em números — métricas de impacto"
-          className="relative overflow-hidden rounded-xl"
-          style={{ backgroundColor: '#0F5238' }}
+          className="relative overflow-hidden rounded-xl bg-verde-profundo"
         >
           <div className="relative flex flex-col lg:flex-row items-center justify-between gap-8 p-12">
             {/* Left: Heading + subtitle */}
-            <div className="flex flex-col gap-4 max-w-[280px]">
+            <div className="flex flex-col gap-4">
               <h1
-                className="font-bold leading-tight"
+                className="font-bold leading-tight text-white"
                 style={{
-                  color: '#FFFFFF',
                   fontSize: 'clamp(32px, 4vw, 48px)',
                   letterSpacing: '-0.96px',
                 }}
               >
-                Raiz Viva<br />em<br />Números
+                Raiz Viva em Números
               </h1>
               <p
-                className="text-lg leading-relaxed"
-                style={{ color: '#95D4B3' }}
+                className="text-lg leading-relaxed text-verde-menta"
               >
                 Monitoramento contínuo gerando impacto real no campo e na vida de quem produz.
               </p>
@@ -76,14 +73,13 @@ export default function ImpactoPage() {
                   >
                     <Icon size={22} strokeWidth={1.5} style={{ color: '#92F7C3' }} />
                     <span
-                      className="text-2xl font-semibold"
-                      style={{ color: '#FFFFFF' }}
+                      className="text-2xl font-semibold text-white"
                     >
                       {kpi.value}
                     </span>
                     <span
-                      className="text-xs font-semibold uppercase tracking-wider whitespace-pre-line"
-                      style={{ color: '#95D4B3', letterSpacing: '0.6px' }}
+                      className="text-xs font-semibold uppercase tracking-wider whitespace-pre-line text-verde-menta"
+                      style={{ letterSpacing: '0.6px' }}
                     >
                       {kpi.label}
                     </span>
@@ -116,28 +112,27 @@ export default function ImpactoPage() {
               {/* Badge */}
               <div
                 className="flex items-center gap-2 w-fit px-3 py-1 rounded-full"
-                style={{ backgroundColor: '#E0F2E6', border: '1px solid rgba(191, 201, 193, 0.3)' }}
+                style={{ backgroundColor: 'var(--surface-verde-suave, #F0FAF4)', border: '1px solid rgba(191,201,193,0.3)' }}
               >
-                <Sparkles size={10} strokeWidth={1.5} style={{ color: '#0F5238' }} />
-                <span className="text-xs font-semibold" style={{ color: '#404943' }}>
+                <Sparkles size={10} strokeWidth={1.5} className="text-verde-profundo" />
+                <span className="text-xs font-semibold text-text-medio">
                   História Real
                 </span>
               </div>
 
               {/* Name */}
               <h2
-                className="text-2xl font-semibold leading-tight"
-                style={{ color: '#101F17' }}
+                className="text-h2 font-semibold leading-tight text-text-forte"
               >
                 Dona Maria,<br />Quixadá - CE
               </h2>
 
               {/* Blockquote */}
               <blockquote
-                className="text-lg leading-relaxed pl-4"
+                className="text-lg leading-relaxed pl-4 text-text-medio"
                 style={{
-                  color: '#404943',
-                  borderLeft: '4px solid #006C48',
+                  borderLeft: '4px solid var(--verde-raiz)',
+                  textAlign: 'justify',
                 }}
               >
                 {historiaReal.citacao}
@@ -145,11 +140,7 @@ export default function ImpactoPage() {
 
               {/* CTA Button */}
               <button
-                className="flex items-center gap-2 w-fit px-4 py-2 rounded-xl text-sm font-medium transition-colors hover:bg-[#E0F2E6]"
-                style={{
-                  color: '#0F5238',
-                  border: '2px solid #0F5238',
-                }}
+                className="flex items-center gap-2 w-fit px-4 py-2 rounded-xl text-body-s font-medium transition-colors hover:bg-surface-verde-suave text-verde-profundo border-2 border-verde-profundo"
               >
                 Ver história completa
                 <ArrowRight size={14} strokeWidth={1.5} />
@@ -160,15 +151,14 @@ export default function ImpactoPage() {
           {/* Perdas Evitadas (span 5) */}
           <section
             aria-label="Comparativo de perdas evitadas com Raiz Viva"
-            className="lg:col-span-5 rounded-xl bg-white p-6 flex flex-col"
-            style={{ boxShadow: '0px 4px 20px -2px rgba(16, 31, 23, 0.04)' }}
+            className="lg:col-span-5 rounded-xl bg-white p-6 flex flex-col shadow-section"
           >
             {/* Header */}
             <div
               className="flex items-center justify-between pb-4"
-              style={{ borderBottom: '1px solid rgba(191, 201, 193, 0.2)' }}
+              style={{ borderBottom: '1px solid rgba(191,201,193,0.2)' }}
             >
-              <h2 className="text-2xl font-semibold" style={{ color: '#101F17' }}>
+              <h2 className="text-h2 font-semibold text-text-forte">
                 Perdas Evitadas
               </h2>
               <Minus size={16} strokeWidth={1.5} style={{ color: '#707973' }} />
@@ -188,8 +178,8 @@ export default function ImpactoPage() {
 
             {/* Bar Chart */}
             <div
-              className="flex-1 rounded-lg flex flex-col justify-end px-6 pt-8 pb-4 min-h-[220px]"
-              style={{ backgroundColor: '#F0FAF4', border: '1px solid rgba(191, 201, 193, 0.15)' }}
+              className="flex-1 rounded-lg flex flex-col justify-end px-6 pt-8 pb-4 min-h-[220px] bg-surface-verde-suave"
+              style={{ border: '1px solid rgba(191,201,193,0.15)' }}
             >
               {/* Bars row */}
               <div className="flex items-end justify-around w-full h-full gap-3">
@@ -226,24 +216,24 @@ export default function ImpactoPage() {
             </div>
 
             {/* Bottom totals */}
-            <div className="flex items-center gap-4 mt-5 pt-4" style={{ borderTop: '1px solid rgba(191, 201, 193, 0.15)' }}>
+            <div className="flex items-center gap-4 mt-5 pt-4" style={{ borderTop: '1px solid var(--borda-verde)' }}>
               <div className="flex flex-col items-center flex-1 gap-1">
-                <span className="text-xs font-semibold" style={{ color: '#707973' }}>
+                <span className="text-xs font-semibold text-text-sutil">
                   Sem Alerta
                 </span>
-                <span className="text-base font-semibold" style={{ color: '#BA1A1A' }}>
+                <span className="text-base font-semibold text-terracota">
                   {perdasEvitadas.semAlerta}
                 </span>
               </div>
               <div
                 className="w-px h-8"
-                style={{ backgroundColor: 'rgba(191, 201, 193, 0.3)' }}
+                style={{ backgroundColor: 'var(--borda-verde)' }}
               />
               <div className="flex flex-col items-center flex-1 gap-1">
-                <span className="text-xs font-semibold" style={{ color: '#707973' }}>
+                <span className="text-xs font-semibold text-text-sutil">
                   Com Raiz Viva
                 </span>
-                <span className="text-base font-semibold" style={{ color: '#0F5238' }}>
+                <span className="text-base font-semibold text-verde-profundo">
                   {perdasEvitadas.comRaizViva}
                 </span>
               </div>
@@ -259,20 +249,20 @@ export default function ImpactoPage() {
             {/* Header */}
             <div
               className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4"
-              style={{ borderBottom: '1px solid rgba(191, 201, 193, 0.2)' }}
+              style={{ borderBottom: '1px solid var(--borda-verde)' }}
             >
               <div className="flex flex-col gap-1">
-                <h2 className="text-2xl font-semibold" style={{ color: '#101F17' }}>
+                <h2 className="text-h2 font-semibold text-text-forte">
                   Mapa de Impacto no Brasil
                 </h2>
-                <p className="text-base" style={{ color: '#404943' }}>
+                <p className="text-body-l text-text-medio">
                   Distribuição de alertas preventivos enviados na última safra.
                 </p>
               </div>
               <div className="flex gap-2">
                 <button
-                  className="p-2 rounded-lg transition-colors hover:bg-[#D5E7DA]"
-                  style={{ backgroundColor: '#E0F2E6' }}
+                  className="p-2 rounded-lg transition-colors hover:bg-surface-verde-medio"
+                  style={{ backgroundColor: 'var(--surface-verde-suave)' }}
                   aria-label="Diminuir zoom"
                 >
                   <Minus size={18} strokeWidth={1.5} style={{ color: '#404943' }} />
@@ -291,8 +281,8 @@ export default function ImpactoPage() {
             <div
               className="relative mt-6 rounded-lg overflow-hidden"
               style={{
-                backgroundColor: '#CDDED2',
-                border: '1px solid rgba(191, 201, 193, 0.2)',
+                backgroundColor: 'var(--surface-verde-pale, #CDDED2)',
+                border: '1px solid rgba(191,201,193,0.2)',
                 height: '460px',
               }}
             >
@@ -376,7 +366,7 @@ export default function ImpactoPage() {
             </div>
           </section>
         </div>
-      </div>
-    </AppLayout>
+      </div >
+    </AppLayout >
   )
 }

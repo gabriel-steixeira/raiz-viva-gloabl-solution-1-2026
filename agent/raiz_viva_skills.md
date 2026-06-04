@@ -117,3 +117,39 @@
 - Apresenta KPIs de impacto (famílias monitoradas, hectares, antecedência dos alertas)
 - Conta a narrativa da Dona Maria (caso de uso emblemático) quando apropriado
 - Conecta o dado espacial ao benefício humano concreto
+
+---
+
+## skill_design_tokens
+**Descrição:** Orienta desenvolvedores sobre como usar os arquivos de tokens do design system Raiz Viva.
+
+**Gatilhos:** "como usar tokens", "qual classe tailwind", "como mudar a cor", "arquivo de cores", "tokens de design", "design tokens"
+
+**Comportamento:**
+- Indica `src/tokens/colors.ts`, `typography.ts`, `spacing.ts` como fonte de verdade
+- Importação correta: `import { colors, typography, spacing } from '@/tokens'`
+- Lista classes Tailwind disponíveis (ver `agent/raiz_viva_design_skill.md`)
+- Alerta para NÃO usar hexadecimais hardcoded — usar sempre tokens ou classes Tailwind
+
+**Classes Tailwind rápidas:**
+```
+bg-verde-raiz | bg-verde-claro | bg-verde-profundo | bg-verde-carbon
+bg-terracota | bg-terracota-suave | bg-bege-terra | bg-branco-campo
+bg-surface-verde-suave | bg-surface-verde-claro | bg-surface-verde-pale
+text-carbon | text-cinza-solo | text-text-forte | text-text-medio | text-text-sutil
+text-h1 | text-h2 | text-h3 | text-body-l | text-body-s | text-caption | text-btn
+rounded-badge | rounded-input | rounded-card | rounded-section | rounded-btn
+shadow-card | shadow-section | shadow-modal
+```
+
+---
+
+## skill_identidade_visual
+**Descrição:** Define e comunica a identidade visual oficial da plataforma Raiz Viva.
+
+**Gatilhos:** "qual a identidade visual", "cores do projeto", "tipografia", "design system", "como é o visual da plataforma"
+
+**Comportamento:**
+- Retorna a especificação completa do design system
+- Consulta `agent/raiz_viva_design_skill.md` para detalhes completos de paleta, tipografia e componentes
+- Orienta sobre os arquivos de tokens e o tailwind.config.js

@@ -17,7 +17,7 @@ export interface TopBarProps {
 
 /**
  * TopBar — Barra superior global de utilidades
- * Fiel ao Figma: fundo branco, busca arredondada, notificações, configurações e ajuda.
+ * Design tokens: bg-white border-borda-suave | busca arredondada | notificações
  */
 export default function TopBar({
   title,
@@ -27,29 +27,24 @@ export default function TopBar({
 }: TopBarProps) {
   return (
     <header
-      className="flex items-center justify-between px-10 py-4 flex-shrink-0 sticky top-0 z-10"
-      style={{
-        backgroundColor: '#FFFFFF',
-        borderBottom: '1px solid #E5E0D5',
-        minHeight: '72px',
-      }}
+      className="flex items-center justify-between px-10 py-4 flex-shrink-0 sticky top-0 z-10 bg-white border-b border-borda-suave"
+      style={{ minHeight: 'var(--topbar-height)' }}
     >
       {/* Left: title + badge */}
       <div className="flex items-center gap-3">
         {title && (
           <h1
-            className="text-xl font-bold leading-none font-sans"
-            style={{ color: '#1B2A22' }}
+            className="text-xl font-bold leading-none font-sans text-verde-carbon"
           >
             {title}
           </h1>
         )}
         {badge && title && (
           <span
-            className="flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-medium font-sans"
+            className="flex items-center gap-1 px-2.5 py-1 rounded-full text-micro font-medium font-sans"
             style={{
-              backgroundColor: '#F0F7F4',
-              color: '#52735F',
+              backgroundColor: 'var(--surface-verde-suave)',
+              color: 'var(--verde-raiz)',
               border: '1px solid rgba(149,213,178,0.4)',
             }}
           >
@@ -66,36 +61,30 @@ export default function TopBar({
             <Search
               size={16}
               strokeWidth={1.8}
-              className="absolute left-3.5 top-1/2 -translate-y-1/2"
-              style={{ color: '#6B7280' }}
+              className="absolute left-3.5 top-1/2 -translate-y-1/2 text-cinza-solo"
             />
             <input
               type="text"
               placeholder="Buscar alertas..."
-              className="w-full pl-10 pr-4 py-2 text-sm rounded-full border focus:outline-none focus:border-[#2D6A4F] transition-all font-sans"
-              style={{
-                backgroundColor: '#F3F4F6',
-                borderColor: '#E5E7EB',
-                color: '#1B2A22',
-              }}
+              className="w-full pl-10 pr-4 py-2 text-body-s rounded-full border border-borda-suave bg-[#F3F4F6] text-verde-carbon focus:outline-none focus:border-verde-raiz transition-all font-sans"
               aria-label="Buscar alertas"
             />
           </div>
         )}
 
-        {/* Custom Actions if any */}
+        {/* Custom Actions */}
         {actions.length > 0 && (
           <div className="flex items-center gap-2">
             {actions.map((action, i) => (
               <button
                 key={i}
                 onClick={action.onClick}
-                className="flex items-center gap-2 px-4 py-2 rounded-3xl text-sm font-medium transition-colors font-sans"
-                style={{
-                  backgroundColor: action.variant === 'primary' ? '#2D6A4F' : '#FFFFFF',
-                  color: action.variant === 'primary' ? '#FFFFFF' : '#2D6A4F',
-                  border: '1.5px solid #2D6A4F',
-                }}
+                className={[
+                  'flex items-center gap-2 px-4 py-2 rounded-btn text-body-s font-medium transition-colors font-sans',
+                  action.variant === 'primary'
+                    ? 'bg-verde-raiz text-branco-campo border border-verde-raiz hover:bg-verde-carbon'
+                    : 'bg-white text-verde-raiz border border-verde-raiz hover:bg-bege-terra',
+                ].join(' ')}
               >
                 {action.icon}
                 {action.label}
@@ -106,30 +95,26 @@ export default function TopBar({
 
         {/* Utility icons (Bell, Settings, HelpCircle) */}
         <div
-          className="flex items-center gap-2 border-l pl-4"
-          style={{ borderColor: '#E5E0D5' }}
+          className="flex items-center gap-2 border-l border-borda-suave pl-4"
         >
           <button
-            className="relative p-2 rounded-full hover:bg-gray-100 transition-colors"
-            style={{ color: '#1B2A22' }}
+            className="relative p-2 rounded-full hover:bg-gray-100 transition-colors text-verde-carbon"
             aria-label="Notificações"
           >
             <Bell size={18} strokeWidth={1.8} />
             <span
-              className="absolute top-1 right-1 w-2.5 h-2.5 rounded-full"
-              style={{ backgroundColor: '#C1440E', border: '1.5px solid #FFFFFF' }}
+              className="absolute top-1 right-1 w-2.5 h-2.5 rounded-full bg-terracota"
+              style={{ border: '1.5px solid #FFFFFF' }}
             />
           </button>
           <button
-            className="p-2 rounded-full hover:bg-gray-100 transition-colors"
-            style={{ color: '#1B2A22' }}
+            className="p-2 rounded-full hover:bg-gray-100 transition-colors text-verde-carbon"
             aria-label="Configurações"
           >
             <Settings size={18} strokeWidth={1.8} />
           </button>
           <button
-            className="p-2 rounded-full hover:bg-gray-100 transition-colors"
-            style={{ color: '#1B2A22' }}
+            className="p-2 rounded-full hover:bg-gray-100 transition-colors text-verde-carbon"
             aria-label="Ajuda"
           >
             <HelpCircle size={18} strokeWidth={1.8} />

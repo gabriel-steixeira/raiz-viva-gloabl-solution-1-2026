@@ -25,8 +25,8 @@ const navItems = [
 
 /**
  * Sidebar — Navegação lateral autenticada
- * Fiel ao Figma: fundo #1B2A22, logo no topo, avatar + nome/perfil,
- * nav com active state borda esquerda verde-claro (#52B788) e fundo #2D6A4F.
+ * Design tokens: bg-verde-carbon | ativo: bg-verde-raiz border-verde-claro
+ * Largura: 280px (--sidebar-width) | Ícones: Lucide (strokeWidth 1.5)
  */
 export default function Sidebar({
   userName = 'Agronomist User',
@@ -34,13 +34,13 @@ export default function Sidebar({
 }: SidebarProps) {
   return (
     <aside
-      className="flex flex-col flex-shrink-0"
-      style={{ width: '280px', minHeight: '100vh', backgroundColor: '#1B2A22' }}
+      className="flex flex-col flex-shrink-0 sticky top-0 bg-verde-carbon"
+      style={{ width: 'var(--sidebar-width)', height: '100vh' }}
     >
       {/* Logo */}
       <div
-        className="px-6 py-4 flex items-center"
-        style={{ borderBottom: '1px solid rgba(255,255,255,0.1)', minHeight: '70px', backgroundColor: '#FFFFFF' }}
+        className="px-6 py-4 flex items-center bg-white"
+        style={{ borderBottom: '1px solid rgba(255,255,255,0.1)', minHeight: 'var(--topbar-height)' }}
       >
         <Logo variant="dark" height={40} />
       </div>
@@ -53,16 +53,15 @@ export default function Sidebar({
             to={to}
             className={({ isActive }) =>
               `flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all ${isActive
-                ? 'border-l-[4px]'
+                ? 'border-l-[4px] text-white'
                 : 'text-white/60 hover:text-white hover:bg-white/5'
               }`
             }
             style={({ isActive }) =>
               isActive
                 ? {
-                    backgroundColor: '#2D6A4F',
-                    color: '#FFFFFF',
-                    borderColor: '#52B788',
+                    backgroundColor: 'var(--verde-raiz)',
+                    borderColor: 'var(--verde-claro)',
                     paddingLeft: '12px',
                   }
                 : {}
@@ -80,8 +79,7 @@ export default function Sidebar({
         style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}
       >
         <div
-          className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0"
-          style={{ backgroundColor: '#2D6A4F', color: '#FAFAF7' }}
+          className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 bg-verde-raiz text-branco-campo"
         >
           {userName.charAt(0).toUpperCase()}
         </div>
@@ -89,7 +87,7 @@ export default function Sidebar({
           <span className="text-sm font-semibold text-white truncate font-sans">
             {userName}
           </span>
-          <span className="text-xs font-sans" style={{ color: '#95D5B2' }}>
+          <span className="text-xs font-sans text-verde-menta">
             {userProfile}
           </span>
         </div>
@@ -100,8 +98,8 @@ export default function Sidebar({
         className="px-6 py-3 flex items-center gap-2"
         style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}
       >
-        <HelpCircle size={13} strokeWidth={1.5} style={{ color: '#95D5B2' }} />
-        <span className="text-xs font-sans" style={{ color: '#95D5B2' }}>Suporte · v1.0.0</span>
+        <HelpCircle size={13} strokeWidth={1.5} className="text-verde-menta" />
+        <span className="text-xs font-sans text-verde-menta">Suporte · v1.0.0</span>
       </div>
     </aside>
   )
