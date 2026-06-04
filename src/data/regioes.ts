@@ -15,7 +15,7 @@ export const regioesMock: RegionData[] = [
   { id: 'SE', nome: 'Sergipe',             estado: 'SE — Nordeste',  iss: 70,  tendencia: 'subindo', familias: 2100,  ultimaAtualizacao: 'há 4h' },
   { id: 'AL', nome: 'Alagoas',             estado: 'AL — Nordeste',  iss: 60,  tendencia: 'estavel', familias: 3400,  ultimaAtualizacao: 'há 4h' },
   { id: 'GO', nome: 'Goiás',               estado: 'GO — Centro-Oeste', iss: 75, tendencia: 'estavel', familias: 7800, ultimaAtualizacao: 'há 2h' },
-  { id: 'MT', nome: 'Mato Grosso',         estado: 'MT — Centro-Oeste', iss: 80, tendencia: 'subindo', familias: 5500, ultimaAtualizacao: 'há 2h' },
+  { id: 'MT', nome: 'Mato Grosso',         estado: 'MT — Centro-Oeste', iss: 15, tendencia: 'caindo',  familias: 5500, ultimaAtualizacao: 'há 2h' },
   { id: 'MS', nome: 'Mato Grosso do Sul',  estado: 'MS — Centro-Oeste', iss: 72, tendencia: 'estavel', familias: 4200, ultimaAtualizacao: 'há 2h' },
   { id: 'MG', nome: 'Minas Gerais',        estado: 'MG — Sudeste',  iss: 65,  tendencia: 'subindo', familias: 22000, ultimaAtualizacao: 'há 2h' },
   { id: 'SP', nome: 'São Paulo',           estado: 'SP — Sudeste',  iss: 78,  tendencia: 'estavel', familias: 15000, ultimaAtualizacao: 'há 1h' },

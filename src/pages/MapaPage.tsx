@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Download } from 'lucide-react'
 import AppLayout from '@/components/ui/AppLayout'
 import TopBar from '@/components/ui/TopBar'
 import FilterBar from '@/components/ui/FilterBar'
@@ -8,16 +7,11 @@ import MapLegend from '@/components/mapa/MapLegend'
 import RegionSidePanel, { RegionData } from '@/components/mapa/RegionSidePanel'
 import { regioesMock, biomas } from '@/data/regioes'
 import { estados } from '@/data/estados'
+import { culturas } from '@/data/culturas'
 
 /**
  * Raiz Viva — Tela 2: Mapa Nacional de Risco
  * Rota: /mapa | Autenticada | Com sidebar
- *
- * Layout:
- *  Sidebar (280px) + Content:
- *    TopBar (56px)
- *    FilterBar (48px)
- *    Mapa (fill) + RegionSidePanel (320px, condicional)
  */
 export default function MapaPage() {
   const [selectedRegion, setSelectedRegion] = useState<RegionData | null>(null)
@@ -42,22 +36,19 @@ export default function MapaPage() {
       value: filters.estado,
       onChange: (v: string) => setFilter('estado', v),
     },
+    {
+      id: 'cultura',
+      label: 'Cultura',
+      options: culturas,
+      value: filters.cultura,
+      onChange: (v: string) => setFilter('cultura', v),
+    },
   ]
 
   return (
-    <AppLayout userName="João da Silva" userProfile="Agricultor Familiar">
-      {/* TopBar */}
-      <TopBar
-        title="Mapa Nacional de Risco"
-        badge="Última atualização: há 3h"
-        actions={[
-          {
-            label: 'Exportar Relatório',
-            variant: 'secondary',
-            icon: <Download size={14} strokeWidth={1.5} />,
-          },
-        ]}
-      />
+    <AppLayout userName="Agronomist User" userProfile="Profile & Settings">
+      {/* TopBar — Fiel ao Figma: apenas barra de busca e utilidades */}
+      <TopBar />
 
       {/* FilterBar */}
       <FilterBar filters={filterItems} />
