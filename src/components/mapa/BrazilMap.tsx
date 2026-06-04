@@ -44,21 +44,22 @@ export default function BrazilMap({ regions, selectedRegionId, onRegionClick }: 
 
   return (
     <div
-      className="relative w-full h-full flex items-center justify-center"
-      style={{ backgroundColor: '#D6EDE5' }}
+      className="relative w-full h-full flex items-center justify-center overflow-hidden"
     >
-      {/* Imagem do Brasil como fundo */}
+      {/* Imagem do Brasil rotacionada -15deg para alinhar com as bolinhas */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <img
           src={`${base}/images/map-brazil.jpg`}
           alt=""
           aria-hidden="true"
-          className="h-full w-auto max-w-none object-contain"
           style={{
-            opacity: 0.18,
-            mixBlendMode: 'multiply',
-            userSelect: 'none',
+            height: '90%',
+            width: 'auto',
             maxHeight: '100%',
+            opacity: 0.22,
+            mixBlendMode: 'multiply',
+            transform: 'rotate(-15deg)',
+            userSelect: 'none',
           }}
         />
       </div>
