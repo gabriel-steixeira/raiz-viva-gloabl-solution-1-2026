@@ -13,7 +13,7 @@ export default function Logo({
 }: LogoProps) {
   return (
     <img
-      src="/images/logo.png"
+      src={`${import.meta.env.BASE_URL}images/logo.png`}
       alt="Raiz Viva"
       height={height}
       style={{
