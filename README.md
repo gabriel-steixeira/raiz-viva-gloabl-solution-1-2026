@@ -1,4 +1,4 @@
-# 🌱 Raiz Viva — v2.0
+# 🌱 Raiz Viva
 
 > **Global Solution 1 — Space Connect | Turma 4SIOA**  
 > *Transformando dados espaciais em proteção para quem vive da terra.*
